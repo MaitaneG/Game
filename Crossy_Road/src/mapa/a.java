@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package mapa;
-
+  
 /**
  *
  * @author gallastegui.maitane
- */
+ */ 
 public class a extends javax.swing.JPanel {
 
     /**
