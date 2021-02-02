@@ -10,14 +10,11 @@ package model;
  * @author gallastegui.maitane
  */
 public class Player {
-    private String name;
     private int points;
     private int lifes;
     private int coins;
-
-    public String getName() {
-        return name;
-    }
+    private int YcloserToGoal;
+    
 
     public int getPoints() {
         return points;
@@ -31,10 +28,6 @@ public class Player {
         return coins;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setPoints(int points) {
         this.points = points;
     }
@@ -45,6 +38,22 @@ public class Player {
 
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+    
+    /**
+     *
+     * @return posicion y del jugador al momento de avanzar mas a la meta
+     */
+    public int getYcloserToGoal() {
+        return YcloserToGoal;
+    }
+
+    /**
+     *
+     * @param YcloserToGoal posicion y del jugador al momento de avanzar mas a la meta
+     */
+    public void setYcloserToGoal(int YcloserToGoal) {
+        this.YcloserToGoal = YcloserToGoal;
     }
     
     public void increaseCoins(int coins){
