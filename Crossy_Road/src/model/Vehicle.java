@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package personaje;
+package model;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +24,7 @@ public class Vehicle extends GameObject {
         super(urlstring, xInit, yInit);
         this.movementDirection = movementDirection;
         this.xLimit = xLimit;
+        startAutomaticMovement();
     }
 
     public void startAutomaticMovement() {
