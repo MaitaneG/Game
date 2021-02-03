@@ -16,7 +16,7 @@ public class Pertsonaia extends GameObject{
 
     public Pertsonaia(String link,int xInit, int yInit) {
         super(link,xInit, yInit);
-        aurreraIcon=new ImageIcon(this.getClass().getResource("images/"+link));
+        //aurreraIcon=new ImageIcon(this.getClass().getResource("/images/"+link));
     }
 
     public ImageIcon getAurreraIcon() {

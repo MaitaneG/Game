@@ -62,14 +62,14 @@ public class Menu {
     /**
      * Muestra el Menu.
      */
-    public void show(){
+    public void erakutsi(){
         menuFrame.setVisible(true);
     }
     
     /**
      * Esconde el Menu.
      */
-    public void hide(){
+    public void eskutatu(){
         menuFrame.setVisible(false);
     }
 }

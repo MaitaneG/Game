@@ -86,7 +86,7 @@ public class PaperRoad {
         golpeTimer.start();
     }
     
-    public void createWinLevelListener(){
+    public void sortuIrabaziMailaListener(){
         irabaziTimer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -129,9 +129,9 @@ public class PaperRoad {
     }
     
     public void mailaKargatu(int level){
-        Pertsonaia pertsonaia=new Pertsonaia("Papera.png",360, 700);
+        Pertsonaia pertsona=new Pertsonaia("Papera.png",360, 700);
         if(level==1){
-            jokalaria= new Player(0,0,3,pertsonaia);
+            jokalaria= new Player(0,0,3,pertsona);
         }
         jokalaria.setYcloserToGoal(9999); // initialize coordinates
         
@@ -151,26 +151,26 @@ public class PaperRoad {
         
         
         
-        jokalariPuntuakLabel = new JLabel(Integer.toString(jokalaria.getPoints()));
-        jokalariPuntuakLabel.setBounds(250,16,100,20);
+        jokalariPuntuakLabel = new JLabel("Puntuak:   "+Integer.toString(jokalaria.getPoints()));
+        jokalariPuntuakLabel.setBounds(200,16,100,20);
         nireFrame.add(jokalariPuntuakLabel);
         
-        denboraLabel = new JLabel(Integer.toString(0));
-        denboraLabel.setBounds(410,16,100,20);
+        denboraLabel = new JLabel("Denbora:   "+Integer.toString(0));
+        denboraLabel.setBounds(360,16,100,20);
         nireFrame.add(denboraLabel);
         
-        jokalariTxanponaLabel = new JLabel(Integer.toString(jokalaria.getCoins()));
-        jokalariTxanponaLabel.setBounds(550,16,100,20);
+        jokalariTxanponaLabel = new JLabel("Txanponak:   "+Integer.toString(jokalaria.getCoins()));
+        jokalariTxanponaLabel.setBounds(500,16,100,20);
         nireFrame.add(jokalariTxanponaLabel);
         
-        jokalariBizitzaLabel = new JLabel(Integer.toString(jokalaria.getLifes()));
-        jokalariBizitzaLabel.setBounds(670,16,100,20);
+        jokalariBizitzaLabel = new JLabel("Bizitzak:   "+Integer.toString(jokalaria.getLifes()));
+        jokalariBizitzaLabel.setBounds(620,16,100,20);
         nireFrame.add(jokalariBizitzaLabel);
         
         
         
-        nireFrame.add(pertsonaia.getLabel());
-        pertsonaia.getLabel().setLocation(360, 700);
+        nireFrame.add(pertsona.getLabel());
+        pertsona.getLabel().setLocation(360, 700);
         
         mapa = new Mapa(level, 0 , 0);
         
@@ -190,10 +190,10 @@ public class PaperRoad {
                 
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
-                        pertsonaia.getLabel().setIcon(pertsonaia.getAurreraIcon());
-                        pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX(), pertsonaia.getLabel().getY()-50);
-                        if(pertsonaia.getLabel().getY()<jokalaria.getYcloserToGoal()){
-                            jokalaria.setYcloserToGoal(pertsonaia.getLabel().getY());
+                        pertsona.getLabel().setIcon(pertsona.getAurreraIcon());
+                        pertsona.getLabel().setLocation(pertsona.getLabel().getX(), pertsona.getLabel().getY()-50);
+                        if(pertsona.getLabel().getY()<jokalaria.getYcloserToGoal()){
+                            jokalaria.setYcloserToGoal(pertsona.getLabel().getY());
                             jokalaria.increasePoints(1);
                             jokalariPuntuakLabel.setText(Integer.toString(jokalaria.getPoints()));
                             System.out.println("puntos acumulados:" +jokalaria.getPoints());
@@ -201,18 +201,18 @@ public class PaperRoad {
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if(pertsonaia.getLabel().getY()<=650){
-                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX(), pertsonaia.getLabel().getY()+50);
+                        if(pertsona.getLabel().getY()<=650){
+                            pertsona.getLabel().setLocation(pertsona.getLabel().getX(), pertsona.getLabel().getY()+50);
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if(pertsonaia.getLabel().getX()>=50){
-                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX()-50, pertsonaia.getLabel().getY());
+                        if(pertsona.getLabel().getX()>=50){
+                            pertsona.getLabel().setLocation(pertsona.getLabel().getX()-50, pertsona.getLabel().getY());
                         }
                         break;
                     case KeyEvent.VK_RIGHT:
-                        if(pertsonaia.getLabel().getX()<=650){
-                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX()+50, pertsonaia.getLabel().getY());
+                        if(pertsona.getLabel().getX()<=650){
+                            pertsona.getLabel().setLocation(pertsona.getLabel().getX()+50, pertsona.getLabel().getY());
                         }
                         break;
                 }
@@ -226,7 +226,7 @@ public class PaperRoad {
             hasieraDenbora = System.currentTimeMillis();
         }
         
-        createWinLevelListener();
+        sortuIrabaziMailaListener();
         
     }
     
@@ -243,9 +243,9 @@ public class PaperRoad {
     public static void main(String[] args) {
         System.out.println("INICIANDO CROSSY ROAD");
         
-        Menu menu = new Menu();
+        Menu menua = new Menu();
         
-        menu.show();
+        menua.erakutsi();
         
     }
 }
