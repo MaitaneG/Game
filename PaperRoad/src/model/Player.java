@@ -15,7 +15,12 @@ public class Player {
     private int coins;
     private int YcloserToGoal;
     
-
+    public Player(int points, int coins, int lifes) {
+        this.points = points;
+        this.coins = coins;
+        this.lifes = lifes;
+    }
+    
     public int getPoints() {
         return points;
     }
@@ -56,15 +61,15 @@ public class Player {
         this.YcloserToGoal = YcloserToGoal;
     }
     
-    public void increaseCoins(int coins){
-        
+    public void increaseCoins(){
+        coins++;
     }
     
     public void increasePoints(int points){
-        
+         this.points += points;
     }
     
     public void decreaseLife(){
-        
+        lifes--;
     }
 }

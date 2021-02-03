@@ -29,11 +29,13 @@ public class PaperRoad {
     private Pertsonaia mascot;
     private Mapa map;
     private Timer crashTimer;
+    private Timer winTimer;
     private final int INITLEVEL;
     
     private JLabel playerLifeLabel;
     private JLabel playerPointsLabel;
     private JLabel playerCoinsLabel;
+    private JLabel TimeLabel;
     
     private double startTime;
     private double endTime;
@@ -67,7 +69,6 @@ public class PaperRoad {
                 for(Vehicle vehicle: map.getVehicles()){
                     crashRect = mascot.getRectangle().intersection(vehicle.getRectangle());
                     if(crashRect.getWidth()>0 && crashRect.getHeight()>0){
-                        playSound("crash.wav");
                         System.out.println("there has been a Crash! ");
                         mascot.getLabel().setLocation(360,700);
                         player.decreaseLife();
@@ -77,21 +78,6 @@ public class PaperRoad {
                             myFrame.setVisible(false);
                         }
                         break;
-                    }
-                }
-                if(map.getLevel()==4){
-                    Rectangle crashRectTrain;
-                    crashRectTrain = null;
-                    crashRectTrain = map.getTrain().getRectangle().intersection(mascot.getRectangle());
-                    if(crashRectTrain.getWidth()>0 && crashRectTrain.getHeight()>0){
-                        playSound("crash.wav");
-                        mascot.getLabel().setLocation(360,700);
-                        player.decreaseLife();
-                        playerLifeLabel.setText(Integer.toString(player.getLifes()));
-                        if(player.getLifes()==0){
-                            JOptionPane.showMessageDialog(null, "GAME OVER!!");
-                            myFrame.setVisible(false);
-                        }
                     }
                 }
             }
@@ -120,9 +106,8 @@ public class PaperRoad {
                 for(Coin coin: map.getCoins()){
                     crashCoinRect = mascot.getRectangle().intersection(coin.getRectangle());
                     if(crashCoinRect.getWidth()>0 && crashCoinRect.getHeight()>0){
-                        playSound("coin.wav");
                         System.out.println("Player Got a Coin! ");
-                        player.IncreaseCoins();
+                        player.increaseCoins();
                         playerCoinsLabel.setText(Integer.toString(player.getCoins()));
                         coin.getLabel().setLocation(-100,-100);
                         System.out.println("toal coins: "+player.getCoins());
@@ -181,11 +166,7 @@ public class PaperRoad {
         
         for(Vehicle vehicle: map.getVehicles()){
             myFrame.add(vehicle.getLabel());
-        }
-        
-        if(level==4){   
-            myFrame.add(map.getTrain().getLabel());
-        }
+        } 
         
         for(Coin coin: map.getCoins()){
             myFrame.add(coin.getLabel());
@@ -199,17 +180,13 @@ public class PaperRoad {
                 
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
-                        mascot.getLabel().setIcon(mascot.getUpIcon());
+                        mascot.getLabel().setIcon(mascot.getAurreraIcon());
                         mascot.getLabel().setLocation(mascot.getLabel().getX(), mascot.getLabel().getY()-50);
                         if(mascot.getLabel().getY()<player.getYcloserToGoal()){
                             player.setYcloserToGoal(mascot.getLabel().getY());
                             player.increasePoints(1);
                             playerPointsLabel.setText(Integer.toString(player.getPoints()));
                             System.out.println("puntos acumulados:" +player.getPoints());
-                            
-                            if(player.getPoints()==50){
-                                playSound("50pts.wav");
-                            }
                             
                         }
                         break;
@@ -240,6 +217,24 @@ public class PaperRoad {
         }
         
         createWinLevelListener();
+        
+    }
+    
+    public void destroyPreviousLevel(){
+        crashTimer.stop();
+        winTimer.stop();
+        crashTimer=null;
+        winTimer=null;
+        map=null;
+        myFrame.setVisible(false);
+        myFrame=null;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("INICIANDO CROSSY ROAD");
+        Menu menu = new Menu();
+        
+        menu.show();
         
     }
 }
