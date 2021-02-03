@@ -14,11 +14,20 @@ public class Player {
     private int lifes;
     private int coins;
     private int YcloserToGoal;
+    private Pertsonaia pertsona;
     
-    public Player(int points, int coins, int lifes) {
+    public Player(int points, int coins, int lifes, Pertsonaia pertsona) {
         this.points = points;
         this.coins = coins;
         this.lifes = lifes;
+        this.pertsona=pertsona;
+    }
+    
+    public Player(){
+        this.points=0;
+        this.coins=0;
+        this.YcloserToGoal=9999;
+        this.lifes=3;
     }
     
     public int getPoints() {
@@ -45,10 +54,6 @@ public class Player {
         this.coins = coins;
     }
     
-    /**
-     *
-     * @return posicion y del jugador al momento de avanzar mas a la meta
-     */
     public int getYcloserToGoal() {
         return YcloserToGoal;
     }

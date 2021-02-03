@@ -24,185 +24,195 @@ import model.Vehicle;
  * @author gallastegui.maitane
  */
 public class PaperRoad {
-    private JFrame myFrame;
-    private Player player;
-    private Pertsonaia mascot;
-    private Mapa map;
-    private Timer crashTimer;
-    private Timer winTimer;
-    private final int INITLEVEL;
+    private JFrame nireFrame;
+    private Player jokalaria;
+    private Pertsonaia pertsonaia;
+    private Mapa mapa;
+    private Timer golpeTimer;
+    private Timer irabaziTimer;
+    private final int LEHENGOMAILA;
     
-    private JLabel playerLifeLabel;
-    private JLabel playerPointsLabel;
-    private JLabel playerCoinsLabel;
-    private JLabel TimeLabel;
+    private JLabel jokalariBizitzaLabel;
+    private JLabel jokalariPuntuakLabel;
+    private JLabel jokalariTxanponaLabel;
+    private JLabel denboraLabel;
+    private JLabel figura;
     
-    private double startTime;
-    private double endTime;
-    private int timeSec;
+    private double hasieraDenbora;
+    private double bukaerakoDenbora;
+    private int denboraSegundu;
     
     
     /**
      *
-     * @param INITLEVEL  nivel inicial del juego
+     * @param LEHENGOMAILA  nivel inicial del juego
      */
-    public PaperRoad(int INITLEVEL) {
-        this.INITLEVEL = INITLEVEL;
-        mascot = new Pertsonaia("Papera.png",360, 700);
+    public PaperRoad(int LEHENGOMAILA) {
+        this.LEHENGOMAILA = LEHENGOMAILA;
+        pertsonaia = new Pertsonaia("Papera.png",360, 700);
     }
     
     public PaperRoad(){
-        INITLEVEL = 1;
+        LEHENGOMAILA = 1;
     }
     
-    public void start(){
-        loadLevel(INITLEVEL);        
+    public void hasi(){
+        mailaKargatu(LEHENGOMAILA);        
 
     }
     
-    public void createCrashListener(){
-        crashTimer = new Timer(2, new ActionListener() {
+    public void sortuGolpeListener(){
+        golpeTimer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Rectangle crashRect;
                 crashRect = null;
-                for(Vehicle vehicle: map.getVehicles()){
-                    crashRect = mascot.getRectangle().intersection(vehicle.getRectangle());
+                for(Vehicle vehicle: mapa.getVehicles()){
+                    crashRect = pertsonaia.getRectangle().intersection(vehicle.getRectangle());
                     if(crashRect.getWidth()>0 && crashRect.getHeight()>0){
                         System.out.println("there has been a Crash! ");
-                        mascot.getLabel().setLocation(360,700);
-                        player.decreaseLife();
-                        playerLifeLabel.setText(Integer.toString(player.getLifes()));
-                        if(player.getLifes()==0){
+                        pertsonaia.getLabel().setLocation(360,700);
+                        jokalaria.decreaseLife();
+                        jokalariBizitzaLabel.setText(Integer.toString(jokalaria.getLifes()));
+                        if(jokalaria.getLifes()==0){
                             JOptionPane.showMessageDialog(null, "GAME OVER!!");
-                            myFrame.setVisible(false);
+                            nireFrame.setVisible(false);
                         }
                         break;
                     }
                 }
             }
         });
-        crashTimer.start();
+        golpeTimer.start();
     }
     
     public void createWinLevelListener(){
-        winTimer = new Timer(2, new ActionListener() {
+        irabaziTimer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                if(mascot.getLabel().getY()<=0){
-                    mascot.getLabel().setLocation(900, 900);
-                    JOptionPane.showMessageDialog(null, "NIVEL "+map.getLevel()+" SUPERADO!!");
-                    if(map.getLevel()==4){
+                if(pertsonaia.getLabel().getY()<=0){
+                    pertsonaia.getLabel().setLocation(900, 900);
+                    JOptionPane.showMessageDialog(null, "NIVEL "+mapa.getLevel()+" SUPERADO!!");
+                    if(mapa.getLevel()==4){
                         JOptionPane.showMessageDialog(null, "USTED HA GANADO EL JUEGO!! FELICITACIONES");
-                        myFrame.setVisible(false);
+                        nireFrame.setVisible(false);
                     }else{
-                        loadLevel(map.getLevel()+1); 
+                        mailaKargatu(mapa.getLevel()+1); 
                     } 
                 }
                 
                 Rectangle crashCoinRect;
                 crashCoinRect = null;
-                for(Coin coin: map.getCoins()){
-                    crashCoinRect = mascot.getRectangle().intersection(coin.getRectangle());
+                for(Coin coin: mapa.getCoins()){
+                    crashCoinRect = pertsonaia.getRectangle().intersection(coin.getRectangle());
                     if(crashCoinRect.getWidth()>0 && crashCoinRect.getHeight()>0){
                         System.out.println("Player Got a Coin! ");
-                        player.increaseCoins();
-                        playerCoinsLabel.setText(Integer.toString(player.getCoins()));
+                        jokalaria.increaseCoins();
+                        jokalariTxanponaLabel.setText(Integer.toString(jokalaria.getCoins()));
                         coin.getLabel().setLocation(-100,-100);
-                        System.out.println("toal coins: "+player.getCoins());
+                        System.out.println("toal coins: "+jokalaria.getCoins());
                         break;
                     }
                 } 
                 
                 
-                endTime = System.currentTimeMillis();
-                System.out.println("startTime:"+startTime);
-                System.out.println("endTime:"+endTime);
-                timeSec = (int)((endTime-startTime)/1000);
-                TimeLabel.setText(Integer.toString(timeSec));
+                bukaerakoDenbora = System.currentTimeMillis();
+                System.out.println("startTime:"+hasieraDenbora);
+                System.out.println("endTime:"+bukaerakoDenbora);
+                denboraSegundu = (int)((bukaerakoDenbora-hasieraDenbora)/1000);
+                denboraLabel.setText(Integer.toString(denboraSegundu));
                 
             }
         });
-        winTimer.start();
+        irabaziTimer.start();
     }
     
-    public void loadLevel(int level){
-        player.setYcloserToGoal(9999); // initialize coordinates
+    public void mailaKargatu(int level){
+        Pertsonaia pertsonaia=new Pertsonaia("Papera.png",360, 700);
+        if(level==1){
+            jokalaria= new Player(0,0,3,pertsonaia);
+        }
+        jokalaria.setYcloserToGoal(9999); // initialize coordinates
+        
+        
+        
         
         if(level!=1){
-            destroyPreviousLevel();
+            borratuAurrekoMaila();
         }
         
-        myFrame = new JFrame("Crossy Road 0.1");   
-        myFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        myFrame.setLayout(null);
-        myFrame.setSize(725,782);
-        myFrame.setLocationRelativeTo(null); // center frame on monitor
-        myFrame.setResizable(false);
+        nireFrame = new JFrame("Paper Road 0.1");   
+        nireFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        nireFrame.setLayout(null);
+        nireFrame.setSize(725,782);
+        nireFrame.setLocationRelativeTo(null); // center frame on monitor
+        nireFrame.setResizable(false);
         
         
         
-        playerPointsLabel = new JLabel(Integer.toString(player.getPoints()));
-        playerPointsLabel.setBounds(250,16,100,20);
-        myFrame.add(playerPointsLabel);
+        jokalariPuntuakLabel = new JLabel(Integer.toString(jokalaria.getPoints()));
+        jokalariPuntuakLabel.setBounds(250,16,100,20);
+        nireFrame.add(jokalariPuntuakLabel);
         
-        TimeLabel = new JLabel(Integer.toString(0));
-        TimeLabel.setBounds(410,16,100,20);
-        myFrame.add(TimeLabel);
+        denboraLabel = new JLabel(Integer.toString(0));
+        denboraLabel.setBounds(410,16,100,20);
+        nireFrame.add(denboraLabel);
         
-        playerCoinsLabel = new JLabel(Integer.toString(player.getCoins()));
-        playerCoinsLabel.setBounds(550,16,100,20);
-        myFrame.add(playerCoinsLabel);
+        jokalariTxanponaLabel = new JLabel(Integer.toString(jokalaria.getCoins()));
+        jokalariTxanponaLabel.setBounds(550,16,100,20);
+        nireFrame.add(jokalariTxanponaLabel);
         
-        playerLifeLabel = new JLabel(Integer.toString(player.getLifes()));
-        playerLifeLabel.setBounds(670,16,100,20);
-        myFrame.add(playerLifeLabel);
+        jokalariBizitzaLabel = new JLabel(Integer.toString(jokalaria.getLifes()));
+        jokalariBizitzaLabel.setBounds(670,16,100,20);
+        nireFrame.add(jokalariBizitzaLabel);
         
-        myFrame.add(mascot.getLabel());
-        mascot.getLabel().setLocation(360, 700);
         
-        map = new Mapa(level, 0 , 0);
         
-        for(Vehicle vehicle: map.getVehicles()){
-            myFrame.add(vehicle.getLabel());
+        nireFrame.add(pertsonaia.getLabel());
+        pertsonaia.getLabel().setLocation(360, 700);
+        
+        mapa = new Mapa(level, 0 , 0);
+        
+        for(Vehicle vehicle: mapa.getVehicles()){
+            nireFrame.add(vehicle.getLabel());
         } 
         
-        for(Coin coin: map.getCoins()){
-            myFrame.add(coin.getLabel());
+        for(Coin coin: mapa.getCoins()){
+            nireFrame.add(coin.getLabel());
         }
         
-        myFrame.add(map.getLabel());
-        myFrame.setVisible(true);
-        myFrame.addKeyListener(new KeyAdapter(){
+        nireFrame.add(mapa.getLabel());
+        nireFrame.setVisible(true);
+        nireFrame.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent e) {
                 
                 switch(e.getKeyCode()){
                     case KeyEvent.VK_UP:
-                        mascot.getLabel().setIcon(mascot.getAurreraIcon());
-                        mascot.getLabel().setLocation(mascot.getLabel().getX(), mascot.getLabel().getY()-50);
-                        if(mascot.getLabel().getY()<player.getYcloserToGoal()){
-                            player.setYcloserToGoal(mascot.getLabel().getY());
-                            player.increasePoints(1);
-                            playerPointsLabel.setText(Integer.toString(player.getPoints()));
-                            System.out.println("puntos acumulados:" +player.getPoints());
+                        pertsonaia.getLabel().setIcon(pertsonaia.getAurreraIcon());
+                        pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX(), pertsonaia.getLabel().getY()-50);
+                        if(pertsonaia.getLabel().getY()<jokalaria.getYcloserToGoal()){
+                            jokalaria.setYcloserToGoal(pertsonaia.getLabel().getY());
+                            jokalaria.increasePoints(1);
+                            jokalariPuntuakLabel.setText(Integer.toString(jokalaria.getPoints()));
+                            System.out.println("puntos acumulados:" +jokalaria.getPoints());
                             
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if(mascot.getLabel().getY()<=650){
-                            mascot.getLabel().setLocation(mascot.getLabel().getX(), mascot.getLabel().getY()+50);
+                        if(pertsonaia.getLabel().getY()<=650){
+                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX(), pertsonaia.getLabel().getY()+50);
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if(mascot.getLabel().getX()>=50){
-                            mascot.getLabel().setLocation(mascot.getLabel().getX()-50, mascot.getLabel().getY());
+                        if(pertsonaia.getLabel().getX()>=50){
+                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX()-50, pertsonaia.getLabel().getY());
                         }
                         break;
                     case KeyEvent.VK_RIGHT:
-                        if(mascot.getLabel().getX()<=650){
-                            mascot.getLabel().setLocation(mascot.getLabel().getX()+50, mascot.getLabel().getY());
+                        if(pertsonaia.getLabel().getX()<=650){
+                            pertsonaia.getLabel().setLocation(pertsonaia.getLabel().getX()+50, pertsonaia.getLabel().getY());
                         }
                         break;
                 }
@@ -210,28 +220,29 @@ public class PaperRoad {
             }
         });
         
-        createCrashListener();
+        sortuGolpeListener();
         
         if(level==1){
-            startTime = System.currentTimeMillis();
+            hasieraDenbora = System.currentTimeMillis();
         }
         
         createWinLevelListener();
         
     }
     
-    public void destroyPreviousLevel(){
-        crashTimer.stop();
-        winTimer.stop();
-        crashTimer=null;
-        winTimer=null;
-        map=null;
-        myFrame.setVisible(false);
-        myFrame=null;
+    public void borratuAurrekoMaila(){
+        golpeTimer.stop();
+        irabaziTimer.stop();
+        golpeTimer=null;
+        irabaziTimer=null;
+        mapa=null;
+        nireFrame.setVisible(false);
+        nireFrame=null;
     }
     
     public static void main(String[] args) {
         System.out.println("INICIANDO CROSSY ROAD");
+        
         Menu menu = new Menu();
         
         menu.show();

@@ -24,13 +24,13 @@ public class GameObject {
     public GameObject(String link, int xInit, int yInit) {
         this.xInit = xInit;
         this.yInit = yInit;
-        this.link=this.getClass().getResource("/images/"+link);
+        this.link=this.getClass().getClassLoader().getResource("images/"+link);
         this.icon=new ImageIcon(link);
         this.label=new JLabel(icon);
         this.label.setBounds(xInit, yInit, icon.getIconWidth(), icon.getIconHeight());
         this.rect=label.getBounds();
     }
-
+    
     public int getxInit() {
         return xInit;
     }

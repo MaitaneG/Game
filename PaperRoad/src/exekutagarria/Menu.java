@@ -47,7 +47,7 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                PaperRoad jolasa=new PaperRoad();
-               jolasa.start();
+               jolasa.hasi();
             }
         });
         
