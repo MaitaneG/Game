@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -60,4 +61,11 @@ public class GameObject {
         return rect;
     }
     
+    public Rectangle getBounds() {
+        return new Rectangle(xInit, yInit, icon.getIconWidth(), icon.getIconHeight());
+    }
+    
+    public void paint(Graphics2D g) {
+        g.fillRect(xInit, yInit, icon.getIconWidth(), icon.getIconHeight());
+    }
 }
