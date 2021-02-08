@@ -1,9 +1,11 @@
+package model;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+
 
 /**
  *
@@ -101,7 +103,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void irtenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irtenActionPerformed
         // TODO add your handling code here:
-        return EXIT_ON_CLOSE;
+        this.dispose ();
     }//GEN-LAST:event_irtenActionPerformed
 
     /**

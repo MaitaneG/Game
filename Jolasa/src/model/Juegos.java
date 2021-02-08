@@ -14,10 +14,8 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -97,7 +95,6 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
         raquetita1.pintarRaqueta1(g2d);
         g2d.setColor(Color.YELLOW);
         raquetita2.pintarRaqueta2(g2d);
-
     }
 
     public void moverMundo() {
