@@ -37,7 +37,7 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
     /**
      * Launch the application.
      *
-     * @throws InterruptedException //OJO AQUI
+     * @throws InterruptedException 
      */
     public static void main(String[] args) throws InterruptedException {
         Juegos frame = new Juegos();
