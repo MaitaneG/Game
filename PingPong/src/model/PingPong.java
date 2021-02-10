@@ -42,8 +42,6 @@ public class PingPong<bolita> extends javax.swing.JFrame implements KeyListener 
 
     public void hasi () throws InterruptedException{
         PingPong frame = new PingPong();
-        frame.setVisible(true);
-
         while (true) {
             frame.repaint();
             frame.moverMundo();
