@@ -15,6 +15,9 @@ public class Bola {
      */
     /**
      * Create the frame.
+     *
+     * @param ancho
+     * @param alto
      */
     public Bola(int ancho, int alto) {
         this.ancho = ancho;
@@ -53,16 +56,13 @@ public class Bola {
         // lerestamos -1 asi vamos hacia la izquierda
         if (x + direccionX > ancho - 40) {
             direccionX = -27;
-        }
-        if (x + direccionX < 0) {
+        } else if (x + direccionX < 0) {
             direccionX = 27;
         }
 
         if (y + direccionY > alto - 60) {//el alto de la ventana menos el diametro *3 de la pelota para que no se salga del panel
             direccionY = -27;
-        }
-
-        if (y + direccionY < 0) {
+        } else if (y + direccionY < 0) {
             direccionY = 27;
         }
 
@@ -92,10 +92,6 @@ public class Bola {
     }
 
     public boolean TocaFondo() {
-        if (x + direccionX > ancho - 40 || x + direccionX < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return x + direccionX > ancho - 40 || x + direccionX < 0;
     }
 }

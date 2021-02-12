@@ -14,11 +14,14 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import letratipoa.Fuentes;
 
 public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
 
@@ -27,26 +30,27 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
     private Bola bolita;
     private Raqueta raquetita1;
     private Raqueta2 raquetita2;
-    private int golpes, golpes2, c;
+    private int golpes, golpes2;
     private JLabel labelcontador;
-    private JLabel fondo;
     private JLabel labelcontador2;
+    Fuentes letramota;
 
     /**
      * Launch the application.
      *
-     * @throws InterruptedException 
+     * @throws InterruptedException //OJO AQUI
      */
     public static void main(String[] args) throws InterruptedException {
         Juegos frame = new Juegos();
         frame.setVisible(true);
 
-        while (true) {
+        for (int i = 0; i < 179; i = i + 1) {
             frame.repaint();
             frame.moverMundo();
-            Thread.sleep(180);
 
+            Thread.sleep(180 - i);
         }
+        Thread.sleep(2);
     }
 
     /**
@@ -61,18 +65,18 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(panel);
         panel.setLayout(null);
-        /////////////////////////
+        letramota = new Fuentes();
 
         labelcontador = new JLabel("0");
-        labelcontador.setForeground(Color.BLACK);
-        labelcontador.setFont(new Font("Monospaced", Font.BOLD, 17));
-        labelcontador.setBounds(93, 0, 73, 18);
+        labelcontador.setForeground(Color.WHITE);
+        labelcontador.setFont(letramota.MyFont(Font.BOLD, 25));
+        labelcontador.setBounds(93, 5, 73, 18);
         panel.add(labelcontador);
 
         labelcontador2 = new JLabel("0");
-        labelcontador2.setForeground(Color.BLACK);
-        labelcontador2.setFont(new Font("Monospaced", Font.BOLD, 17));
-        labelcontador2.setBounds(485, 2, 56, 16);
+        labelcontador2.setForeground(Color.WHITE);
+        labelcontador2.setFont(letramota.MyFont(Font.BOLD, 25));
+        labelcontador2.setBounds(485, 5, 56, 16);
         panel.add(labelcontador2);
 
         bolita = new Bola(getWidth(), getHeight());
@@ -84,36 +88,38 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
 
     }
 
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-
+        getContentPane().setBackground(Color.black);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, (RenderingHints.VALUE_ANTIALIAS_ON));
-        g2d.setColor(Color.GREEN);
-        bolita.pintarBola(g2d);
+        g.setColor(Color.WHITE);
+        g.fillRect(310, 20, 15, 450);
         g2d.setColor(Color.RED);
         raquetita1.pintarRaqueta1(g2d);
         g2d.setColor(Color.YELLOW);
         raquetita2.pintarRaqueta2(g2d);
+        g2d.setColor(Color.WHITE);
+        bolita.pintarBola(g2d);
     }
+    
 
     public void moverMundo() {
         bolita.moverBola();
         if (colision()) {
             bolita.rebotaBola();
             golpes = golpes + 1;
-            //Sonido.REBOTEBOLA.play();
+
             labelcontador.setText(String.valueOf(golpes / 2));
 
-        }
-        if (colision2()) {
+        } else if (colision2()) {
             bolita.rebotaBola();
             golpes2 = golpes2 + 1;
-            //Sonido.REBOTEBOLA.play();
+
             labelcontador2.setText(String.valueOf(golpes2 / 2));
 
-        }
-        if (bolita.TocaFondo()) {
+        } else if (bolita.TocaFondo()) {
 
             gameOver();
         }
@@ -130,18 +136,28 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            raquetita1.moverRaquetaarriba1();
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_W:
+                raquetita1.moverRaquetaarriba1();
+                break;
+            case KeyEvent.VK_S:
+                raquetita1.moverRaquetaabajo1();
+                break;
+
         }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
-            raquetita1.moverRaquetaabajo1();
-        }
-        //////////////////////////////////////////
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            raquetita2.moverRaquetaarriba2();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            raquetita2.moverRaquetaabajo2();
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_UP:
+                raquetita2.moverRaquetaarriba2();
+                break;
+
+            case KeyEvent.VK_DOWN:
+                raquetita2.moverRaquetaabajo2();
+                break;
+
         }
 
     }
@@ -163,14 +179,14 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
         if (golpes > golpes2) {
             JOptionPane.showMessageDialog(this, "El jugador 1 ganó", "Game Over", JOptionPane.YES_NO_OPTION);
             System.exit(0);
+        } else if (golpes < golpes2) {
+
+            JOptionPane.showMessageDialog(this, "El jugador 2 ganó", "Game Over", JOptionPane.YES_NO_OPTION);
+            System.exit(0);
         } else {
-            if (golpes < golpes2) {
-                JOptionPane.showMessageDialog(this, "El jugador 2 ganó", "Game Over", JOptionPane.YES_NO_OPTION);
-                System.exit(0);
-            } else {
-                JOptionPane.showMessageDialog(this, "Empate", "Game Over", JOptionPane.YES_NO_OPTION);
-                System.exit(0);
-            }
+            JOptionPane.showMessageDialog(this, "Empate", "Game Over", JOptionPane.YES_NO_OPTION);
+            System.exit(0);
         }
     }
+
 }
