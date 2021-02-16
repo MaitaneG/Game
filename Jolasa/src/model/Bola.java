@@ -3,7 +3,7 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
+ 
 public class Bola {
 
     private int x, y, direccionX, direccionY, alto, ancho;
