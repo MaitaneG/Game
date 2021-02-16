@@ -1,148 +1,186 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
 import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import letratipoa.Fuentes;
 
-public class PingPong<bolita> extends javax.swing.JFrame implements KeyListener {
+public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     //private final BufferStrategy estrategia;
-    private JPanel panel;
-    private Bola bolita;
-    private Raqueta raquetita1;
-    private Raqueta2 raquetita2;
-    private int golpes, golpes2, c;
-    private JLabel labelcontador;
-    private JLabel fondo;
-    private JLabel labelcontador2;
+    private JPanel panela;
+    private Bola bola;
+    private Erraketa1 erraketa1;
+    private Erraketa2 erraketa2;
+    private int golpe1, golpe2;
+    private JLabel labelkontagailu1;
+    private JLabel labelkontagailu2;
+    Fuentes letramota;
 
     /**
      * Launch the application.
      *
      * @param args
-     * 
+     * @throws InterruptedException //OJO AQUI
      */
-    public static void main(String[] args){
-        Menu menua=new Menu();
-        menua.erakutsi();
-        
-        
-    }
+    public static void main(String[] args) throws InterruptedException {
+        PingPong markoa = new PingPong();
 
-    public void hasi () throws InterruptedException{
-        PingPong frame = new PingPong();
-        while (true) {
-            frame.repaint();
-            frame.moverMundo();
-            Thread.sleep(180);
+        int aukera = JOptionPane.showConfirmDialog(markoa, "Jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
+        if (aukera == JOptionPane.NO_OPTION) {
+            System.exit(0);
+        } else if (aukera == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (up-key, down-key)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
+            markoa.setVisible(true);
 
+            for (int i = 0; i < 179; i++) {
+                Thread.sleep(180 - i);
+                markoa.createBufferStrategy(3);
+                markoa.repaint();
+                markoa.mugituObjetuak();
+                BufferStrategy strategy = markoa.getBufferStrategy();
+                Graphics g = strategy.getDrawGraphics();
+                g.dispose();
+                strategy.show();
+     
+            }
+            Thread.sleep(2);
         }
     }
-    /**
-     * Constructor de la clase juego.
-     */
+        /**
+         * Constructor de la clase juego.
+         */
     public PingPong() {
+        hasieratu();
+
+    }
+
+    public final void hasieratu() {
+
         setTitle("Ping Pong ");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(450, 100, 640, 450);
-        panel = new JPanel();
-        panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(panel);
-        panel.setLayout(null);
-        /////////////////////////
+        panela = new JPanel();
+        panela.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(panela);
+        panela.setLayout(null);
+        letramota = new Fuentes();
 
-        labelcontador = new JLabel("0");
-        labelcontador.setForeground(Color.BLACK);
-        labelcontador.setFont(new Font("Monospaced", Font.BOLD, 17));
-        labelcontador.setBounds(93, 0, 73, 18);
-        panel.add(labelcontador);
+        labelkontagailu1 = new JLabel("0");
+        labelkontagailu1.setForeground(Color.WHITE);
+        labelkontagailu1.setFont(letramota.MyFont(Font.BOLD, 25));
+        labelkontagailu1.setBounds(93, 5, 73, 18);
+        panela.add(labelkontagailu1);
 
-        labelcontador2 = new JLabel("0");
-        labelcontador2.setForeground(Color.BLACK);
-        labelcontador2.setFont(new Font("Monospaced", Font.BOLD, 17));
-        labelcontador2.setBounds(485, 2, 56, 16);
-        panel.add(labelcontador2);
+        labelkontagailu2 = new JLabel("0");
+        labelkontagailu2.setForeground(Color.WHITE);
+        labelkontagailu2.setFont(letramota.MyFont(Font.BOLD, 25));
+        labelkontagailu2.setBounds(485, 5, 56, 16);
+        panela.add(labelkontagailu2);
 
-        bolita = new Bola(getWidth(), getHeight());
-        raquetita1 = new Raqueta(getHeight());
-        raquetita2 = new Raqueta2(getHeight());
+        bola = new Bola(getWidth(), getHeight());
+        erraketa1 = new Erraketa1(getHeight());
+        erraketa2 = new Erraketa2(getHeight());
         addKeyListener(this);
-        golpes = 0;
-        golpes2 = 0;
+        golpe1 = 0;
+        golpe2 = 0;
 
     }
 
     public void paint(Graphics g) {
         super.paint(g);
-        Graphics2D g2d = (Graphics2D) g;
 
+        Graphics2D g2d = (Graphics2D) g;
+        getContentPane().setBackground(Color.black);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, (RenderingHints.VALUE_ANTIALIAS_ON));
-        g2d.setColor(Color.GREEN);
-        bolita.pintarBola(g2d);
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(310, 20, 15, 450);
         g2d.setColor(Color.RED);
-        raquetita1.pintarRaqueta1(g2d);
+        erraketa1.margotuErraketa1(g2d);
         g2d.setColor(Color.YELLOW);
-        raquetita2.pintarRaqueta2(g2d);
+        erraketa2.margotuErraketa2(g2d);
+        g2d.setColor(Color.WHITE);
+        bola.bolaMargotu(g2d);
 
     }
 
-    public void moverMundo() {
-        bolita.moverBola();
-        if (colision()) {
-            bolita.rebotaBola();
-            golpes = golpes + 1;
-            //Sonido.REBOTEBOLA.play();
-            labelcontador.setText(String.valueOf(golpes / 2));
+    public void mugituObjetuak() {
+        bola.bolaMugitu();
+        if (talka1Erraketa()) {
+            bola.bolaErrebotatu();
+            golpe1 = golpe1 + 1;
+            labelkontagailu1.setText(String.valueOf(golpe1 / 2));
 
-        }
-        if (colision2()) {
-            bolita.rebotaBola();
-            golpes2 = golpes2 + 1;
-            //Sonido.REBOTEBOLA.play();
-            labelcontador2.setText(String.valueOf(golpes2 / 2));
+        } else if (talka2Erraketa()) {
+            bola.bolaErrebotatu();
+            golpe2 = golpe2 + 1;
 
-        }
-        if (bolita.TocaFondo()) {
+            labelkontagailu2.setText(String.valueOf(golpe2 / 2));
+
+        } else if (bola.fondoaUkitu()) {
 
             gameOver();
         }
 
     }
 
-    public boolean colision() {
-        return bolita.limiteBola().intersects(raquetita1.limiteRaqueta1());
+    public boolean talka1Erraketa() {
+        return bola.bolarenLimitea().intersects(erraketa1.bolarenLimitea1());
     }
 
-    public boolean colision2() {
-        return bolita.limiteBola().intersects(raquetita2.limiteRaqueta2());
+    public boolean talka2Erraketa() {
+        return bola.bolarenLimitea().intersects(erraketa2.bolarenLimitea2());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
-            raquetita1.moverRaquetaarriba1();
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_W:
+                erraketa1.mugituErraketa1Gorantz();
+                break;
+            case KeyEvent.VK_S:
+                erraketa1.mugituErraketa1Beherantz();
+                break;
+
         }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
-            raquetita1.moverRaquetaabajo1();
-        }
-        //////////////////////////////////////////
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            raquetita2.moverRaquetaarriba2();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            raquetita2.moverRaquetaabajo2();
+
+        switch (e.getKeyCode()) {
+
+            case KeyEvent.VK_UP:
+                erraketa2.mugituErraketa2Gorantz();
+                break;
+
+            case KeyEvent.VK_DOWN:
+                erraketa2.mugituErraketa2Beherantz();
+                break;
+
         }
 
     }
@@ -161,17 +199,19 @@ public class PingPong<bolita> extends javax.swing.JFrame implements KeyListener 
     public void gameOver() {
         //Sonido.FONDO.stop();
         //Sonido.GAMEOVER.play();
-        if (golpes > golpes2) {
-            JOptionPane.showMessageDialog(this, "El jugador 1 ganó", "Game Over", JOptionPane.YES_NO_OPTION);
+        if (golpe1 > golpe2) {
+            JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             System.exit(0);
-        } else {
-            if (golpes < golpes2) {
-                JOptionPane.showMessageDialog(this, "El jugador 2 ganó", "Game Over", JOptionPane.YES_NO_OPTION);
-                System.exit(0);
-            } else {
-                JOptionPane.showMessageDialog(this, "Empate", "Game Over", JOptionPane.YES_NO_OPTION);
-                System.exit(0);
-            }
+        } else if (golpe1 < golpe2) {
+            JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
+            System.exit(0);
+        }else if(golpe1==0 && golpe2==0){ 
+            JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
+            System.exit(0);
+        }else {
+            JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
+            System.exit(0);
         }
     }
+
 }

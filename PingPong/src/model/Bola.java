@@ -6,93 +6,95 @@ import java.awt.Rectangle;
 
 public class Bola {
 
-    private int x, y, direccionX, direccionY, alto, ancho;
-    public int diametro;
-    private Color coloret;
+    private int x, y, xNorabidea, yNorabidea, altuera, zabalera;
+    public int diametroa;
+    private Color kolorea;
 
     /**
      * Launch the application.
      */
     /**
      * Create the frame.
+     * @param zabalera
+     * @param altuera
      */
-    public Bola(int ancho, int alto) {
-        this.ancho = ancho;
-        this.alto = alto;
+    public Bola(int zabalera, int altuera) {
+        this.zabalera = zabalera;
+        this.altuera = altuera;
         x = 0;
         y = 0;
-        direccionX = 27;
-        direccionY = 27;
-        diametro = 20;
-        coloret = Color.red;
+        xNorabidea = 27;
+        yNorabidea = 27;
+        diametroa = 20;
+        kolorea = Color.red;
     }
 
-    public Bola(int ancho, int alto, int diametro) {
-        this.ancho = ancho;
-        this.alto = alto;
-        this.diametro = diametro;
+    public Bola(int zabalera, int altuera, int diametroa) {
+        this.zabalera = zabalera;
+        this.altuera = altuera;
+        this.diametroa = diametroa;
         x = 0;
         y = 0;
-        direccionX = 27;
-        direccionY = 27;
+        xNorabidea = 27;
+        yNorabidea = 27;
     }
 
-    public Bola(int ancho, int alto, int diametro, Color coloret) {
-        this.ancho = ancho;
-        this.alto = alto;
-        this.diametro = diametro;
-        this.coloret = coloret;
+    public Bola(int zabalera, int altuera, int diametroa, Color coloret) {
+        this.zabalera = zabalera;
+        this.altuera = altuera;
+        this.diametroa = diametroa;
+        this.kolorea = coloret;
         x = 0;
         y = 0;
-        direccionX = 27;
-        direccionY = 27;
+        xNorabidea = 27;
+        yNorabidea = 27;
     }
 
-    public void moverBola() {
+    public void bolaMugitu() {
         //CUANDO llega a la derecha y supera el ancho dela ventana 
         // lerestamos -1 asi vamos hacia la izquierda
-        if (x + direccionX > ancho - 40) {
-            direccionX = -27;
+        if (x + xNorabidea > zabalera - 40) {
+            xNorabidea = -27;
         }
-        if (x + direccionX < 0) {
-            direccionX = 27;
-        }
-
-        if (y + direccionY > alto - 60) {//el alto de la ventana menos el diametro *3 de la pelota para que no se salga del panel
-            direccionY = -27;
+        if (x + xNorabidea < 0) {
+            xNorabidea = 27;
         }
 
-        if (y + direccionY < 0) {
-            direccionY = 27;
+        if (y + yNorabidea > altuera - 60) {//el alto de la ventana menos el diametroa *3 de la pelota para que no se salga del panel
+            yNorabidea = -27;
         }
 
-        x = x + direccionX;//// nota ojo
-        y = y + direccionY;
+        if (y + yNorabidea < 0) {
+            yNorabidea = 27;
+        }
+
+        x = x + xNorabidea;//// nota ojo
+        y = y + yNorabidea;
 
     }
 
-    public void pintarBola(Graphics2D g) {
+    public void bolaMargotu(Graphics2D g) {
 
         g.fillOval(5 + x, 30 + y, 20, 20);
     }
 
-    public Rectangle limiteBola() {
-        return new Rectangle(5 + x, 30 + y, diametro, diametro);
+    public Rectangle bolarenLimitea() {
+        return new Rectangle(5 + x, 30 + y, diametroa, diametroa);
 
     }
 
-    public void rebotaBola() {
+    public void bolaErrebotatu() {
 
-        if (x + direccionX > 40) {
-            direccionX = direccionX - 27;
+        if (x + xNorabidea > 40) {
+            xNorabidea = xNorabidea - 27;
         } else {
-            direccionX = direccionX + 27;
+            xNorabidea = xNorabidea + 27;
         }
 
     }
 
-    public boolean TocaFondo() {
-        if (x + direccionX > ancho - 40 || x + direccionX < 0) {
+    public boolean fondoaUkitu() {
+        if (x + xNorabidea > zabalera - 40 || x + xNorabidea < 0) {
             return true;
         } else {
             return false;
