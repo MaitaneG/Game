@@ -23,12 +23,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import letratipoa.Fuentes;
 
-public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
+public class Juegos extends javax.swing.JFrame implements KeyListener {
 
     //private final BufferStrategy estrategia;
     private JPanel panel;
@@ -48,26 +49,31 @@ public class Juegos<bolita> extends javax.swing.JFrame implements KeyListener {
      */
     public static void main(String[] args) throws InterruptedException {
         Juegos frame = new Juegos();
-        frame.setVisible(true);
 
-        for (int i = 0; i < 179; i++) {
-            Thread.sleep(180 - i);
-            frame.createBufferStrategy(3);
-            frame.repaint();
-            frame.moverMundo();
-            BufferStrategy strategy = frame.getBufferStrategy();
-            Graphics g = strategy.getDrawGraphics();
-            g.dispose();
-            strategy.show();
+        int result = JOptionPane.showConfirmDialog(frame, "Jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.NO_OPTION) {
+            System.exit(0);
+        } else if (result == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(frame, "Jokalari gorria (W, S) vs Jokalari horia (up-key, down-key)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
+            frame.setVisible(true);
 
+            for (int i = 0; i < 179; i++) {
+                Thread.sleep(180 - i);
+                frame.createBufferStrategy(3);
+                frame.repaint();
+                frame.moverMundo();
+                BufferStrategy strategy = frame.getBufferStrategy();
+                Graphics g = strategy.getDrawGraphics();
+                g.dispose();
+                strategy.show();
+
+            }
+            Thread.sleep(2);
         }
-        Thread.sleep(2);
-
     }
-
-    /**
-     * Constructor de la clase juego.
-     */
+        /**
+         * Constructor de la clase juego.
+         */
     public Juegos() {
         init();
 
