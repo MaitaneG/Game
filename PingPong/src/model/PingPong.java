@@ -205,8 +205,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
             this.setVisible(true);
             reset();
             
-            soinua.soinuaberriztu();
-            soinua.soinuaHasi();
             for (int i = 0; i < 179; i++) {
                 Thread.sleep(180 - i);
                 this.createBufferStrategy(3);
@@ -225,6 +223,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
     public void reset() {
+        
         labelkontagailu1.setText("0");
         labelkontagailu2.setText("0");
         golpe1=0;
@@ -232,8 +231,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         bola = new Bola(getWidth(), getHeight());
         erraketa1 = new Erraketa1(getHeight());
         erraketa2 = new Erraketa2(getHeight());
-        soinua.soinuaberriztu();
-        soinua.soinuaHasi();
     }
 
     public void gameOver() throws InterruptedException {
