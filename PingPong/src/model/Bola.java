@@ -94,10 +94,6 @@ public class Bola {
     }
 
     public boolean fondoaUkitu() {
-        if (x + xNorabidea > zabalera - 40 || x + xNorabidea < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return x + xNorabidea > zabalera - 40 || x + xNorabidea < 0;
     }
 }

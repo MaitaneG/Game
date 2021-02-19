@@ -5,27 +5,19 @@
  */
 package model;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import letratipoa.Fuentes;
 
@@ -54,7 +46,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         if (aukera == JOptionPane.NO_OPTION) {
             System.exit(0);
         } else if (aukera == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (up-key, down-key)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             markoa.setVisible(true);
 
             for (int i = 0; i < 179; i++) {
@@ -112,6 +104,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     }
 
+    
     public void paint(Graphics g) {
         super.paint(g);
 
