@@ -30,21 +30,33 @@ public class Sounds {
     }
 
     public void soinuaHasi() {
-
+        //Soinua hasten da
         soinua1.start();
+
+    }
+
+    public void soinuaberriztu() {
+
+        soinua1.drain();
 
     }
 
     public void soinuaItzali() {
 
-        // Comienza la reproducción
+        // Soinua bukatzen da
         soinua1.close();
 
     }
 
     public void gameOversound() {
-
+        //Bukaerako soinua hasten da
         soinua2.start();
+
+    }
+
+    public void gameOveramaitu() {
+
+        soinua2.close();
 
     }
 

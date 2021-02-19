@@ -31,9 +31,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     private int golpe1, golpe2;
     private JLabel labelkontagailu1;
     private JLabel labelkontagailu2;
-    private static Sounds soinua = new Sounds();;
+    private static Sounds soinua = new Sounds();
+    ;
     private Fuentes letramota;
-    
 
     /**
      * Launch the application.
@@ -50,8 +50,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             markoa.setVisible(true);
-            
-           soinua.soinuaHasi();
+
+            soinua.soinuaHasi();
             for (int i = 0; i < 179; i++) {
                 Thread.sleep(180 - i);
                 markoa.createBufferStrategy(3);
@@ -61,15 +61,16 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 Graphics g = strategy.getDrawGraphics();
                 g.dispose();
                 strategy.show();
-     
+
             }
-     
+
             Thread.sleep(2);
         }
     }
-        /**
-         * Constructor de la clase juego.
-         */
+
+    /**
+     * Constructor de la clase juego.
+     */
     public PingPong() {
         hasieratu();
 
@@ -105,12 +106,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         addKeyListener(this);
         golpe1 = 0;
         golpe2 = 0;
-        
-        
 
     }
 
-    
     public void paint(Graphics g) {
         super.paint(g);
 
@@ -128,25 +126,24 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     }
 
-    public void mugituObjetuak() {
+    public void mugituObjetuak() throws InterruptedException {
         bola.bolaMugitu();
         if (talka1Erraketa()) {
             bola.bolaErrebotatu();
             golpe1 = golpe1 + 1;
             labelkontagailu1.setText(String.valueOf(golpe1 / 2));
-          
 
         } else if (talka2Erraketa()) {
             bola.bolaErrebotatu();
             golpe2 = golpe2 + 1;
 
             labelkontagailu2.setText(String.valueOf(golpe2 / 2));
-           
+
         } else if (bola.fondoaUkitu()) {
             soinua.soinuaItzali();
             soinua.gameOversound();
             gameOver();
-            
+
         }
 
     }
@@ -198,20 +195,63 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     }
 
-    public void gameOver() {
-        
+    public void berriroHasi() throws InterruptedException {
+
+        int aukera = JOptionPane.showConfirmDialog(this, "Berriro jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
+        if (aukera == JOptionPane.NO_OPTION) {
+            System.exit(0);
+        } else if (aukera == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(true);
+            reset();
+            
+            soinua.soinuaberriztu();
+            soinua.soinuaHasi();
+            for (int i = 0; i < 179; i++) {
+                Thread.sleep(180 - i);
+                this.createBufferStrategy(3);
+                this.repaint();
+                this.mugituObjetuak();
+                BufferStrategy strategy = this.getBufferStrategy();
+                Graphics g = strategy.getDrawGraphics();
+                g.dispose();
+                strategy.show();
+
+            }
+
+            Thread.sleep(2);
+        }
+
+    }
+
+    public void reset() {
+        labelkontagailu1.setText("0");
+        labelkontagailu2.setText("0");
+        golpe1=0;
+        golpe2=0;
+        bola = new Bola(getWidth(), getHeight());
+        erraketa1 = new Erraketa1(getHeight());
+        erraketa2 = new Erraketa2(getHeight());
+        soinua.soinuaberriztu();
+        soinua.soinuaHasi();
+    }
+
+    public void gameOver() throws InterruptedException {
+
         if (golpe1 > golpe2) {
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
-            System.exit(0);
+            
+            berriroHasi();
+
         } else if (golpe1 < golpe2) {
             JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
-            System.exit(0);
-        }else if(golpe1==0 && golpe2==0){ 
+            berriroHasi();
+        } else if (golpe1 == 0 && golpe2 == 0) {
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
-            System.exit(0);
-        }else {
+            berriroHasi();
+        } else {
             JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
-            System.exit(0);
+            berriroHasi();
         }
     }
 
