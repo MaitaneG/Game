@@ -13,7 +13,7 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-
+import musika.Sounds;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,7 +31,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     private int golpe1, golpe2;
     private JLabel labelkontagailu1;
     private JLabel labelkontagailu2;
-    Fuentes letramota;
+    private static Sounds soinua = new Sounds();;
+    private Fuentes letramota;
+    
 
     /**
      * Launch the application.
@@ -48,7 +50,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             markoa.setVisible(true);
-
+            
+           soinua.soinuaHasi();
             for (int i = 0; i < 179; i++) {
                 Thread.sleep(180 - i);
                 markoa.createBufferStrategy(3);
@@ -60,6 +63,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 strategy.show();
      
             }
+     
             Thread.sleep(2);
         }
     }
@@ -101,6 +105,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         addKeyListener(this);
         golpe1 = 0;
         golpe2 = 0;
+        
+        
 
     }
 
@@ -128,16 +134,19 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
             bola.bolaErrebotatu();
             golpe1 = golpe1 + 1;
             labelkontagailu1.setText(String.valueOf(golpe1 / 2));
+          
 
         } else if (talka2Erraketa()) {
             bola.bolaErrebotatu();
             golpe2 = golpe2 + 1;
 
             labelkontagailu2.setText(String.valueOf(golpe2 / 2));
-
+           
         } else if (bola.fondoaUkitu()) {
-
+            soinua.soinuaItzali();
+            soinua.gameOversound();
             gameOver();
+            
         }
 
     }
@@ -190,8 +199,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
     public void gameOver() {
-        //Sonido.FONDO.stop();
-        //Sonido.GAMEOVER.play();
+        
         if (golpe1 > golpe2) {
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             System.exit(0);
