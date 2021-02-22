@@ -1,4 +1,4 @@
-package model;
+package exekutagarria;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,6 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import letratipoa.Iturria;
+import model.Bola;
+import model.Erraketa1;
+import model.Erraketa2;
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
 
