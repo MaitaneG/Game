@@ -40,11 +40,11 @@ public class Bola {
         yNorabidea = 27;
     }
 
-    public Bola(int zabalera, int altuera, int diametroa, Color coloret) {
+    public Bola(int zabalera, int altuera, int diametroa, Color kolorea) {
         this.zabalera = zabalera;
         this.altuera = altuera;
         this.diametroa = diametroa;
-        this.kolorea = coloret;
+        this.kolorea = kolorea;
         x = 0;
         y = 0;
         xNorabidea = 27;
