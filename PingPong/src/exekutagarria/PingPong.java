@@ -28,8 +28,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     private Erraketa1 erraketa1;
     private Erraketa2 erraketa2;
     private int golpe1, golpe2;
-    private JLabel labelkontagailu1;
-    private JLabel labelkontagailu2;
+    private JLabel labelKontagailu1;
+    private JLabel labelKontagailu2;
     private static Soinua soinua = new Soinua();
 //    private JFrame kredituak;
 //    private JPanel kreditupanela;
@@ -93,17 +93,17 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         panela.setLayout(null);
         letramota = new Iturria();
 
-        labelkontagailu1 = new JLabel("0");
-        labelkontagailu1.setForeground(Color.WHITE);
-        labelkontagailu1.setFont(letramota.nireIturria(Font.BOLD, 25));
-        labelkontagailu1.setBounds(93, 5, 73, 18);
-        panela.add(labelkontagailu1);
+        labelKontagailu1 = new JLabel("0");
+        labelKontagailu1.setForeground(Color.WHITE);
+        labelKontagailu1.setFont(letramota.nireIturria(Font.BOLD, 25));
+        labelKontagailu1.setBounds(93, 5, 73, 18);
+        panela.add(labelKontagailu1);
 
-        labelkontagailu2 = new JLabel("0");
-        labelkontagailu2.setForeground(Color.WHITE);
-        labelkontagailu2.setFont(letramota.nireIturria(Font.BOLD, 25));
-        labelkontagailu2.setBounds(485, 5, 56, 16);
-        panela.add(labelkontagailu2);
+        labelKontagailu2 = new JLabel("0");
+        labelKontagailu2.setForeground(Color.WHITE);
+        labelKontagailu2.setFont(letramota.nireIturria(Font.BOLD, 25));
+        labelKontagailu2.setBounds(485, 5, 56, 16);
+        panela.add(labelKontagailu2);
 
         bola = new Bola(getWidth(), getHeight());
         erraketa1 = new Erraketa1(getHeight());
@@ -136,13 +136,13 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         if (talka1Erraketa()) {
             bola.bolaErrebotatu();
             golpe1 = golpe1 + 1;
-            labelkontagailu1.setText(String.valueOf(golpe1 / 2));
+            labelKontagailu1.setText(String.valueOf(golpe1 / 2));
 
         } else if (talka2Erraketa()) {
             bola.bolaErrebotatu();
             golpe2 = golpe2 + 1;
 
-            labelkontagailu2.setText(String.valueOf(golpe2 / 2));
+            labelKontagailu2.setText(String.valueOf(golpe2 / 2));
 
         } else if (bola.fondoaUkitu()) {
             soinua.soinuaItzali();
@@ -276,8 +276,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
     public void reset() {
-        labelkontagailu1.setText("0");
-        labelkontagailu2.setText("0");
+        labelKontagailu1.setText("0");
+        labelKontagailu2.setText("0");
         golpe1 = 0;
         golpe2 = 0;
         bola = new Bola(getWidth(), getHeight());
