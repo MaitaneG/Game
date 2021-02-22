@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 public class Bola {
 
     private int x, y, xNorabidea, yNorabidea, altuera, zabalera;
-    public int diametroa;
+    private int diametroa;
     private Color kolorea;
 
     /**
@@ -15,6 +15,7 @@ public class Bola {
      */
     /**
      * Create the frame.
+     *
      * @param zabalera
      * @param altuera
      */

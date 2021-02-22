@@ -1,29 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package musika;
 
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Sounds {
+public class Soinua {
 
     private Clip soinua1;
     private Clip soinua2;
 
-    public Sounds() {
+    public Soinua() {
         try {
             this.soinua1 = AudioSystem.getClip();
-            soinua1.open(AudioSystem.getAudioInputStream(new File("src/musika/musicaDurante.wav")));
+            soinua1.open(AudioSystem.getAudioInputStream(new File("src/musika/musikaBitartean.wav")));
         } catch (Exception e) {
             System.out.println("" + e);
         }
         try {
             this.soinua2 = AudioSystem.getClip();
-            soinua2.open(AudioSystem.getAudioInputStream(new File("src/musika/musicaFinal.wav")));
+            soinua2.open(AudioSystem.getAudioInputStream(new File("src/musika/musikaBukaera.wav")));
         } catch (Exception e) {
             System.out.println("" + e);
         }
@@ -35,7 +30,7 @@ public class Sounds {
 
     }
 
-    public void soinuaberriztu() {
+    public void soinuaBerriztu() {
 
         soinua1.drain();
 
@@ -48,13 +43,13 @@ public class Sounds {
 
     }
 
-    public void gameOversound() {
+    public void gameOverSoinua() {
         //Bukaerako soinua hasten da
         soinua2.start();
 
     }
 
-    public void gameOveramaitu() {
+    public void gameOverAmaitu() {
 
         soinua2.close();
 
