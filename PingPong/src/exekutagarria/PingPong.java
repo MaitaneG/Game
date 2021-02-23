@@ -81,7 +81,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     }
 
-    public final void hasieratu() {
+    public void hasieratu() {
 
         setTitle("Ping Pong ");
         setResizable(false);
