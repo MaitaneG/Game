@@ -38,7 +38,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 //    private JLabel izena1;
 //    private JLabel izena2;
 //    private JLabel izenburua;
-    private Iturria letramota;
+    private Iturria letraMota;
 
     /**
      * Launch the application.
@@ -91,17 +91,17 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         panela.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(panela);
         panela.setLayout(null);
-        letramota = new Iturria();
+        letraMota = new Iturria();
 
         labelKontagailu1 = new JLabel("0");
         labelKontagailu1.setForeground(Color.WHITE);
-        labelKontagailu1.setFont(letramota.nireIturria(Font.BOLD, 25));
+        labelKontagailu1.setFont(letraMota.nireIturria(Font.BOLD, 25));
         labelKontagailu1.setBounds(93, 5, 73, 18);
         panela.add(labelKontagailu1);
 
         labelKontagailu2 = new JLabel("0");
         labelKontagailu2.setForeground(Color.WHITE);
-        labelKontagailu2.setFont(letramota.nireIturria(Font.BOLD, 25));
+        labelKontagailu2.setFont(letraMota.nireIturria(Font.BOLD, 25));
         labelKontagailu2.setBounds(485, 5, 56, 16);
         panela.add(labelKontagailu2);
 
