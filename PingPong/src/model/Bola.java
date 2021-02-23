@@ -5,18 +5,17 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Bola {
+
     private int x, y, xNorabidea, yNorabidea, altuera, zabalera;
     private int diametroa;
     private Color kolorea;
 
-    /**
-     * Launch the application.
-     */
+    
     /**
      * Create the frame.
-     *
-     * @param zabalera
-     * @param altuera
+     * Bolaren konstruktoreak.
+     * @param zabalera jasotzen du.
+     * @param altuera jasotzen du.
      */
     public Bola(int zabalera, int altuera) {
         this.zabalera = zabalera;
@@ -28,7 +27,12 @@ public class Bola {
         diametroa = 20;
         kolorea = Color.red;
     }
-
+/**
+ * Bolaren konstruktorea.
+ * @param zabalera jasotzen du.
+ * @param altuera jasotzen du.
+ * @param diametroa jasotzen du.
+ */
     public Bola(int zabalera, int altuera, int diametroa) {
         this.zabalera = zabalera;
         this.altuera = altuera;
@@ -38,21 +42,29 @@ public class Bola {
         xNorabidea = 27;
         yNorabidea = 27;
     }
-
-    public Bola(int zabalera, int altuera, int diametroa, Color kolorea) {
+/**
+ * Bolaren konstruktorea.
+ * @param zabalera jasotzen du.
+ * @param altuera jasotzen du.
+ * @param diametroa jasotzen du.
+ * @param coloret jasotzen du.
+ */
+    public Bola(int zabalera, int altuera, int diametroa, Color coloret) {
         this.zabalera = zabalera;
         this.altuera = altuera;
         this.diametroa = diametroa;
-        this.kolorea = kolorea;
+        this.kolorea = coloret;
         x = 0;
         y = 0;
         xNorabidea = 27;
         yNorabidea = 27;
     }
-
+/**
+ * Eskuinera iristen denean eta leihoaren zabalera gainditzen duenean.
+ * Leihoaren altuera ken pilotaren diametroa* 3, paneletik atera ez dadin.
+ * baldintza hauekin bola mugitzen da.
+ */
     public void bolaMugitu() {
-        //CUANDO llega a la derecha y supera el ancho dela ventana 
-        // lerestamos -1 asi vamos hacia la izquierda
         if (x + xNorabidea > zabalera - 40) {
             xNorabidea = -27;
         }
@@ -60,7 +72,7 @@ public class Bola {
             xNorabidea = 27;
         }
 
-        if (y + yNorabidea > altuera - 60) {//el alto de la ventana menos el diametroa *3 de la pelota para que no se salga del panel
+        if (y + yNorabidea > altuera - 60) {
             yNorabidea = -27;
         }
 
@@ -68,10 +80,14 @@ public class Bola {
             yNorabidea = 27;
         }
 
-        x = x + xNorabidea;//// nota ojo
+        x = x + xNorabidea;
         y = y + yNorabidea;
 
     }
+    /**
+     * 
+     * @param g bola margotzeko ezaugarriak.
+     */
 
     public void bolaMargotu(Graphics2D g) {
 
@@ -82,7 +98,9 @@ public class Bola {
         return new Rectangle(5 + x, 30 + y, diametroa, diametroa);
 
     }
-
+/**
+ * bola errebotatzeko balditza.
+ */
     public void bolaErrebotatu() {
 
         if (x + xNorabidea > 40) {
@@ -92,7 +110,10 @@ public class Bola {
         }
 
     }
-
+/**
+ * 
+ * @return metedo hau konprobatzen du ea bola raketa bat ez den zerbait ukitzen badu.
+ */
     public boolean fondoaUkitu() {
         return x + xNorabidea > zabalera - 40 || x + xNorabidea < 0;
     }
