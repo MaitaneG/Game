@@ -10,12 +10,9 @@ public class Erraketa2 {
     private Color kolorea;
 
     /**
-     * Launch the application.
-     */
-    /**
-     * Create the frame.
+     * Erraketa2-ren konstruktorea
      *
-     * @param altuera
+     * @param altuera jasotzen du
      */
     public Erraketa2(int altuera) {
         y = 0;
@@ -24,14 +21,25 @@ public class Erraketa2 {
         kolorea = Color.red;
         this.altuera = altuera;
     }
-
+    /**
+     * Erraketa2-ren konstruktorea
+     * 
+     * @param altuera jasotzen du
+     * @param kolorea jasotzen du
+     */
     public Erraketa2(int altuera, Color kolorea) {
         this.altuera = altuera;
         this.kolorea = kolorea;
         y = 0;
         yNorabidea = 1;
     }
-
+    /**
+     * Erraketa2-ren konstruktorea
+     * 
+     * @param altuera jasotzen du
+     * @param kolorea jasotzen du
+     * @param zabalera jasotzen du
+     */
     public Erraketa2(int altuera, Color kolorea, int zabalera) {
         this.altuera = altuera;
         this.kolorea = kolorea;
