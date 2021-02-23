@@ -43,8 +43,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     /**
      * Launch the application.
      *
+     * JFramea sortu eta metodoei deitu.
      * @param args
-     * @throws InterruptedException //OJO AQUI
+     * @throws InterruptedException 
      */
     public static void main(String[] args) throws InterruptedException {
         PingPong markoa = new PingPong();
@@ -74,13 +75,16 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
     /**
-     * Constructor de la clase juego.
+     * Jokuaren kontruktorea
      */
     public PingPong() {
         hasieratu();
 
     }
- 
+    
+    /**
+     * Hemen jolasaren datuak hasieratzen du.
+     */
     public void hasieratu() {
 
         setTitle("Ping Pong ");
@@ -113,7 +117,11 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         golpe2 = 0;
 
     }
-
+    
+    /**
+     * Objetuak (mapa, bola, erraketak) marrazteko
+     * @param g 
+     */
     public void paint(Graphics g) {
         super.paint(g);
 
@@ -130,63 +138,71 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         bola.bolaMargotu(g2d);
 
     }
-
+    
+    /**
+     * Objetuak mugitzen ditu eta erraketekin talka bat badago kolpeak kontatzen ditu.
+     * Fondoa ikutzen badu gameOver metodoari deitzen dio.
+     * @throws InterruptedException 
+     */
     public void mugituObjetuak() throws InterruptedException {
         bola.bolaMugitu();
         if (talka1Erraketa()) {
             bola.bolaErrebotatu();
             golpe1 = golpe1 + 1;
             labelKontagailu1.setText(String.valueOf(golpe1 / 2));
-
         } else if (talka2Erraketa()) {
             bola.bolaErrebotatu();
             golpe2 = golpe2 + 1;
-
             labelKontagailu2.setText(String.valueOf(golpe2 / 2));
-
         } else if (bola.fondoaUkitu()) {
             soinua.soinuaItzali();
             soinua.gameOverSoinua();
             gameOver();
-
         }
-
     }
-
+    /**
+     * Konprobatzen du, lehenengo erraktarekin talka bat egon den.
+     * @return lehengo erraketarekin talka bat badago true bueltatzen du, bestela false
+     */
     public boolean talka1Erraketa() {
         return bola.bolarenLimitea().intersects(erraketa1.bolarenLimitea1());
     }
-
+    
+    /**
+     * Konprobatzen du, bigarren erraktarekin talka bat egon den.
+     * @return bigarren erraketarekin talka bat badago true bueltatzen du, bestela false
+     */
     public boolean talka2Erraketa() {
         return bola.bolarenLimitea().intersects(erraketa2.bolarenLimitea2());
     }
 
     @Override
+    /**
+     * Tekla bat klikatzean funtzionatzen du.
+     * W klikatzen bada erraketa 1 gora doa.
+     * S klikatzen bada erraketa 1 behara doa
+     * gorako gezia klikatzen bada erraketa 2 gora doa.
+     * beherako gezia klikatzen bada erraketa 2 behera doa.
+     */
     public void keyPressed(KeyEvent e) {
 
         switch (e.getKeyCode()) {
-
             case KeyEvent.VK_W:
                 erraketa1.mugituErraketa1Gorantz();
                 break;
             case KeyEvent.VK_S:
                 erraketa1.mugituErraketa1Beherantz();
                 break;
-
         }
 
         switch (e.getKeyCode()) {
-
             case KeyEvent.VK_UP:
                 erraketa2.mugituErraketa2Gorantz();
                 break;
-
             case KeyEvent.VK_DOWN:
                 erraketa2.mugituErraketa2Beherantz();
                 break;
-
         }
-
     }
 
     @Override
@@ -311,3 +327,4 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
 }
+
