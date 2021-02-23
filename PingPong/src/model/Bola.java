@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Bola {
-
     private int x, y, xNorabidea, yNorabidea, altuera, zabalera;
     private int diametroa;
     private Color kolorea;
