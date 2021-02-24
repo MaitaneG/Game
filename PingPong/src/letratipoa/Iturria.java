@@ -15,30 +15,24 @@ public class Iturria {
  * Iturriaren konstruktorea.
  */
     public Iturria() {
-
         String iturrIzena = "ARCADECLASSIC.TTF";
-
         try {
-
             iturri = Font.createFont(Font.TRUETYPE_FONT, new File("src/letratipoa/ARCADECLASSIC.TTF"));
         } catch (Exception ex) {
-
             System.err.println(iturrIzena + " ez da kargatu iturria");
             iturri = new Font("Arial", Font.PLAIN, 14);
         }
-
     }
 
     /**
      *
      * @param estiloa jasotzen du.
      * @param tamaina jasotzen du.
-     * @return
+     * @return iturria bueltatzen du.
      */
 
     public Font nireIturria(int estiloa, float tamaina) {
         Font niturria = iturri.deriveFont(estiloa, tamaina);
         return niturria;
     }
-
 }

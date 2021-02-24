@@ -49,7 +49,7 @@ public class Erraketa1 {
     }
     
     /**
-     * Bola behera mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
+     * Erraketa behera mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
      */
     public void mugituErraketa1Beherantz() {
         if (y - 30 > -207) { //(484/2-zabalera)=207  
@@ -58,7 +58,7 @@ public class Erraketa1 {
     }
     
     /**
-     * Bola gora mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
+     * Erraketa1 gora mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
      */
     public void mugituErraketa1Gorantz() {
         if (y + zabalera + 30 < altuera - 242) {//(484/2)=242
@@ -67,7 +67,7 @@ public class Erraketa1 {
     }
     
     /**
-     * Erraketa margotzeko
+     * Erraketa1 margotzeko
      * @param g jasotzen du
      */
     public void margotuErraketa1(Graphics2D g) {

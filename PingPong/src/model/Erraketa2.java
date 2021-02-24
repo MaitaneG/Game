@@ -48,23 +48,36 @@ public class Erraketa2 {
         yNorabidea = 1;
     }
 
-    //(x + direccionX > 0 && x + direccionX < ancho-largo 
+    /**
+     * Bola behera mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
+     */
     public void mugituErraketa2Beherantz() {
         if (y - 30 > -207) {
             y = y - 30;
         }
     }
 
+    /**
+     * Erraketa2 gora mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
+     */
     public void mugituErraketa2Gorantz() {
         if (y + zabalera + 30 < altuera - 242) {
             y = y + 30;
         }
     }
 
+    /**
+     * Erraketa margotzeko
+     * @param g jasotzen du
+     */
     public void margotuErraketa2(Graphics2D g) {
         g.fillRoundRect(603, 207 - y, 20, zabalera, 25, 25);
     }
 
+    /**
+     * Bolarekin noiz talka egiten duen jakitzeko.
+     * @return bueltzen du Rectangle motatako objetu bat limiteak zehazteko
+     */
     public Rectangle bolarenLimitea2() {
         return new Rectangle(603, 207 - y, 20, zabalera);
     }

@@ -22,7 +22,6 @@ import model.Erraketa1;
 import model.Erraketa2;
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
-
     private JPanel panela;
     private Bola bola;
     private Erraketa1 erraketa1;
@@ -49,7 +48,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      */
     public static void main(String[] args) throws InterruptedException {
         PingPong markoa = new PingPong();
-
         int aukera = JOptionPane.showConfirmDialog(markoa, "Jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
             System.exit(0);
@@ -67,9 +65,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 Graphics g = strategy.getDrawGraphics();
                 g.dispose();
                 strategy.show();
-
             }
-
             Thread.sleep(2);
         }
     }
@@ -79,14 +75,12 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      */
     public PingPong() {
         hasieratu();
-
     }
     
     /**
      * Hemen jolasaren datuak hasieratzen du.
      */
     public void hasieratu() {
-
         setTitle("Ping Pong ");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -115,7 +109,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         addKeyListener(this);
         golpe1 = 0;
         golpe2 = 0;
-
     }
     
     /**
@@ -136,7 +129,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         erraketa2.margotuErraketa2(g2d);
         g2d.setColor(Color.WHITE);
         bola.bolaMargotu(g2d);
-
     }
     
     /**
@@ -185,7 +177,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * beherako gezia klikatzen bada erraketa 2 behera doa.
      */
     public void keyPressed(KeyEvent e) {
-
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
                 erraketa1.mugituErraketa1Gorantz();
@@ -204,15 +195,24 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 break;
         }
     }
-
+    
+    /**
+     * Tekla bat askatzean
+     * Metodo hau jarri behar da, bestela errorea ematen du
+     * @param e 
+     */
     @Override
     public void keyReleased(KeyEvent e) {
-
+        
     }
-
+    
+    /**
+     * Tekla bat klikatzean
+     * Metodo hau jarri behar da, bestela errorea ematen du
+     * @param e 
+     */
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
 
     }
     /**
@@ -251,7 +251,6 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 //        izenburua.setBounds(250,200, 250, 30);
 //        kredituak.add(izenburua);
 //        
-//        
 //        izena1=new JLabel("Maitane    Gallastegui");
 //        izena1.setForeground(Color.WHITE);
 //        izena1.setFont(letramota.nireIturria(Font.BOLD, 14));
@@ -262,19 +261,23 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 //        izena2.setForeground(Color.WHITE);
 //        izena2.setFont(letramota.nireIturria(Font.BOLD, 14));
 //        izena2.setBounds(250, 250, 250, 30);
+    
 //        kredituak.add(izena2);
-// 
 //        kredituak.setVisible(true);
-//    
 //        }
 //    }
 
+    /**
+     * Berri jolastu nahi duen galdetzen du 
+     * Baietz esaten badu, berriro kargatuko da partida
+     * Ezetz esaten badu, jolasa itxiko da
+     * 
+     * @throws InterruptedException 
+     */
     public void berriroHasi() throws InterruptedException {
-
         int aukera = JOptionPane.showConfirmDialog(this, "Berriro jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
             System.exit(0);
-
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(true);
@@ -292,9 +295,13 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
             }
             Thread.sleep(2);
         }
-
     }
 
+    /**
+     * Kontagailuak 0-ra jartzen du
+     * Golpeak 0-ra jartzen du 
+     * Bolak eta erraketak hasierako posizioan jartzen ditu
+     */
     public void reset() {
         labelKontagailu1.setText("0");
         labelKontagailu2.setText("0");
@@ -305,30 +312,26 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         erraketa2 = new Erraketa2(getHeight());
     }
 
+    /**
+     * Game Over mezua agertzen da, eta berriroHasi metodoari deitzen dio.
+     * @throws InterruptedException 
+     */
     public void gameOver() throws InterruptedException {
-
         if (golpe1 > golpe2) {
-
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
-
         } else if (golpe1 < golpe2) {
-
             JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
 
         } else if (golpe1 == 0 && golpe2 == 0) {
-
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
 
         } else {
-
             JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
-
         }
     }
-
 }
 
