@@ -15,6 +15,3 @@ _Jolasa azaldu_
      jokalaria lehenego golpea huts egiten badu, 1. jokalaria irabazten du.
   7- Bukatzean, berriro jolastea nahi duzun galdetzen dizu. Ez klikatzen baduzu, jolasa bukatzen da. Bai klikatzen baduzu, berriro hasten da 0-tik. 
   8- Bigarren aldiz jolasten duzunean ez da musika jartzen.
-  
-_Arazoak_
-  1- Kredituen kodigoa funtzionatzen du baina ez nahi dugun moduan, Horregatik komentatu dugu, ez exekutatzeko. 
