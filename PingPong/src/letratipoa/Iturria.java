@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.io.File;
 
 /**
+ * Gure letra mota propioa jarri nahi dugu.
  *
  * @author moneo.asier
  */
@@ -25,6 +26,13 @@ public class Iturria {
         }
 
     }
+
+    /**
+     *
+     * @param estiloa jasotzen du.
+     * @param tamaina jasotzen du.
+     * @return
+     */
 
     public Font nireIturria(int estiloa, float tamaina) {
         Font niturria = iturri.deriveFont(estiloa, tamaina);
