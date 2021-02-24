@@ -11,7 +11,9 @@ import java.io.File;
 public class Iturria {
 
     private Font iturri = null;
-
+/**
+ * Iturriaren konstruktorea.
+ */
     public Iturria() {
 
         String iturrIzena = "ARCADECLASSIC.TTF";
