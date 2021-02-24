@@ -215,6 +215,10 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         // TODO Auto-generated method stub
 
     }
+    /**
+     * Linea hauek komentatuta daude, ezin izan dugu inplementatu kredituak,agertzen ziren jokua exekutatzen zegoen bitartean eta ez zen gelditzen.
+     * @throws InterruptedException 
+     */
 //    public void kredituakbistaratu() throws InterruptedException{
 //    int aukera = JOptionPane.showConfirmDialog(this, "Kredituak ikusi nahi dituzu?", "Kredituak", JOptionPane.YES_NO_OPTION);
 //        if (aukera == JOptionPane.NO_OPTION) {
