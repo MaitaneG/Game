@@ -44,8 +44,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * Launch the application.
      *
      * JFramea sortu eta metodoei deitu.
+     *
      * @param args
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
         PingPong markoa = new PingPong();
@@ -56,7 +57,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             markoa.setVisible(true);
-            
+
             soinua.soinuaHasi();
             for (int i = 0; i < 179; i++) {
                 Thread.sleep(180 - i);
@@ -81,7 +82,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         hasieratu();
 
     }
-    
+
     /**
      * Hemen jolasaren datuak hasieratzen du.
      */
@@ -117,10 +118,11 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         golpe2 = 0;
 
     }
-    
+
     /**
      * Objetuak (mapa, bola, erraketak) marrazteko
-     * @param g 
+     *
+     * @param g
      */
     public void paint(Graphics g) {
         super.paint(g);
@@ -138,11 +140,12 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         bola.bolaMargotu(g2d);
 
     }
-    
+
     /**
-     * Objetuak mugitzen ditu eta erraketekin talka bat badago kolpeak kontatzen ditu.
-     * Fondoa ikutzen badu gameOver metodoari deitzen dio.
-     * @throws InterruptedException 
+     * Objetuak mugitzen ditu eta erraketekin talka bat badago kolpeak kontatzen
+     * ditu. Fondoa ikutzen badu gameOver metodoari deitzen dio.
+     *
+     * @throws InterruptedException
      */
     public void mugituObjetuak() throws InterruptedException {
         bola.bolaMugitu();
@@ -160,17 +163,22 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
             gameOver();
         }
     }
+
     /**
      * Konprobatzen du, lehenengo erraktarekin talka bat egon den.
-     * @return lehengo erraketarekin talka bat badago true bueltatzen du, bestela false
+     *
+     * @return lehengo erraketarekin talka bat badago true bueltatzen du,
+     * bestela false
      */
     public boolean talka1Erraketa() {
         return bola.bolarenLimitea().intersects(erraketa1.bolarenLimitea1());
     }
-    
+
     /**
      * Konprobatzen du, bigarren erraktarekin talka bat egon den.
-     * @return bigarren erraketarekin talka bat badago true bueltatzen du, bestela false
+     *
+     * @return bigarren erraketarekin talka bat badago true bueltatzen du,
+     * bestela false
      */
     public boolean talka2Erraketa() {
         return bola.bolarenLimitea().intersects(erraketa2.bolarenLimitea2());
@@ -178,11 +186,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     @Override
     /**
-     * Tekla bat klikatzean funtzionatzen du.
-     * W klikatzen bada erraketa 1 gora doa.
-     * S klikatzen bada erraketa 1 behara doa
-     * gorako gezia klikatzen bada erraketa 2 gora doa.
-     * beherako gezia klikatzen bada erraketa 2 behera doa.
+     * Tekla bat klikatzean funtzionatzen du. W klikatzen bada erraketa 1 gora
+     * doa. S klikatzen bada erraketa 1 behara doa gorako gezia klikatzen bada
+     * erraketa 2 gora doa. beherako gezia klikatzen bada erraketa 2 behera doa.
      */
     public void keyPressed(KeyEvent e) {
 
@@ -215,81 +221,78 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         // TODO Auto-generated method stub
 
     }
+
     /**
-     * Linea hauek komentatuta daude, ezin izan dugu inplementatu kredituak,agertzen ziren jokua exekutatzen zegoen bitartean eta ez zen gelditzen.
-     * @throws InterruptedException 
+     * Linea hauek komentatuta daude, ezin izan dugu inplementatu
+     * kredituak,agertzen ziren jokua exekutatzen zegoen bitartean eta ez zen
+     * gelditzen.
+     *
+     * @throws InterruptedException
      */
-    public void kredituakbistaratu() throws InterruptedException{
-         
-        kredituak= new JFrame();
+    public void kredituakbistaratu() throws InterruptedException {
+
+        kredituak = new JFrame();
         kredituak.setTitle("Kredituak");
         kredituak.setResizable(false);
         kredituak.setBounds(450, 100, 640, 450);
-        kreditupanela=new JPanel();
+        kreditupanela = new JPanel();
         kreditupanela.setBorder(new EmptyBorder(5, 5, 5, 5));
         kredituak.setContentPane(kreditupanela);
         kreditupanela.setLayout(null);
         kreditupanela.setBackground(Color.black);
-        
-        argazkia= new ImageIcon("src/argazkia/argazkia.PNG");
+
+        argazkia = new ImageIcon("src/argazkia/argazkia.PNG");
         Image arg = argazkia.getImage();
         Image argazkineurri = arg.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
         argazkia = new ImageIcon(argazkineurri);
-        
-        argazkilabel= new JLabel();
+
+        argazkilabel = new JLabel();
         argazkilabel.setBounds(220, 30, argazkineurri.getWidth(rootPane), argazkineurri.getHeight(rootPane));
         argazkilabel.setIcon(argazkia);
         kredituak.add(argazkilabel);
-       
-        izenburua= new JLabel("Ping Pong");
+
+        izenburua = new JLabel("Ping Pong");
         izenburua.setForeground(Color.WHITE);
         izenburua.setFont(letraMota.nireIturria(Font.BOLD, 20));
-        izenburua.setBounds(250,200, 250, 30);
+        izenburua.setBounds(250, 200, 250, 30);
         kredituak.add(izenburua);
-        
-        
-        izena1=new JLabel("Maitane    Gallastegui");
+
+        izena1 = new JLabel("Maitane    Gallastegui");
         izena1.setForeground(Color.WHITE);
         izena1.setFont(letraMota.nireIturria(Font.BOLD, 14));
         izena1.setBounds(250, 230, 250, 30);
         kredituak.add(izena1);
-        
-        izena2=new JLabel("Asier    Moneo");
+
+        izena2 = new JLabel("Asier    Moneo");
         izena2.setForeground(Color.WHITE);
         izena2.setFont(letraMota.nireIturria(Font.BOLD, 14));
         izena2.setBounds(250, 250, 250, 30);
         kredituak.add(izena2);
- 
+
         kredituak.setVisible(true);
         kredituak.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
+
     }
-    
+
     /**
-     * Berri jolastu nahi duen galdetzen du 
-     * Baietz esaten badu, berriro kargatuko da partida
-     * Ezetz esaten badu, jolasa itxiko da
-     * 
-     * @throws InterruptedException 
+     * Berri jolastu nahi duen galdetzen du Baietz esaten badu, berriro
+     * kargatuko da partida Ezetz esaten badu, jolasa itxiko da
+     *
+     * @throws InterruptedException
      */
     public void berriroHasi() throws InterruptedException {
-        
-        
+
         int aukera = JOptionPane.showConfirmDialog(this, "Berriro jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
             kredituakbistaratu();
-            while(true){
+            while (true) {
                 this.setVisible(false);
             }
-            
-            
 
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(true);
-            
-            
+
             reset();
 
             for (int i = 0; i < 179; i++) {
@@ -308,9 +311,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
     /**
-     * Kontagailuak 0-ra jartzen du
-     * Golpeak 0-ra jartzen du 
-     * Bolak eta erraketak hasierako posizioan jartzen ditu
+     * Kontagailuak 0-ra jartzen du Golpeak 0-ra jartzen du Bolak eta erraketak
+     * hasierako posizioan jartzen ditu
      */
     public void reset() {
         labelKontagailu1.setText("0");
@@ -324,7 +326,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     /**
      * Game Over mezua agertzen da, eta berriroHasi metodoari deitzen dio.
-     * @throws InterruptedException 
+     *
+     * @throws InterruptedException
      */
     public void gameOver() throws InterruptedException {
 
@@ -352,4 +355,3 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     }
 
 }
-
