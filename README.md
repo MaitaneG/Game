@@ -15,3 +15,7 @@ _Jolasa azaldu_
      jokalaria lehenego golpea huts egiten badu, 1. jokalaria irabazten du.
   7- Bukatzean, berriro jolastea nahi duzun galdetzen dizu. Ez klikatzen baduzu, jolasa bukatzen da. Bai klikatzen baduzu, berriro hasten da 0-tik. 
   8- Bigarren aldiz jolasten duzunean ez da musika jartzen.
+
+_Arazoak_ 
+  1- Gure jokua netbeans-en ondo exekutatzen da, baina .jar-etatik exekutzen bada, letra tipoa eta musika ez du ondo funtzionatzen. Horregatik bideoa egiterakoan, Netbean-etik egin 
+     dugu.
