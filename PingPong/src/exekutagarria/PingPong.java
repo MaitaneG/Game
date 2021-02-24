@@ -22,6 +22,7 @@ import model.Erraketa1;
 import model.Erraketa2;
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
+
     private JPanel panela;
     private Bola bola;
     private Erraketa1 erraketa1;
@@ -30,13 +31,13 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     private JLabel labelKontagailu1;
     private JLabel labelKontagailu2;
     private static Soinua soinua = new Soinua();
-//    private JFrame kredituak;
-//    private JPanel kreditupanela;
-//    private ImageIcon argazkia;
-//    private JLabel argazkilabel;
-//    private JLabel izena1;
-//    private JLabel izena2;
-//    private JLabel izenburua;
+    private JFrame kredituak;
+    private JPanel kreditupanela;
+    private ImageIcon argazkia;
+    private JLabel argazkilabel;
+    private JLabel izena1;
+    private JLabel izena2;
+    private JLabel izenburua;
     private Iturria letraMota;
 
     /**
@@ -48,13 +49,14 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      */
     public static void main(String[] args) throws InterruptedException {
         PingPong markoa = new PingPong();
+
         int aukera = JOptionPane.showConfirmDialog(markoa, "Jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
             System.exit(0);
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(markoa, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             markoa.setVisible(true);
-
+            
             soinua.soinuaHasi();
             for (int i = 0; i < 179; i++) {
                 Thread.sleep(180 - i);
@@ -65,7 +67,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 Graphics g = strategy.getDrawGraphics();
                 g.dispose();
                 strategy.show();
+
             }
+
             Thread.sleep(2);
         }
     }
@@ -75,12 +79,14 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      */
     public PingPong() {
         hasieratu();
+
     }
     
     /**
      * Hemen jolasaren datuak hasieratzen du.
      */
     public void hasieratu() {
+
         setTitle("Ping Pong ");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +115,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         addKeyListener(this);
         golpe1 = 0;
         golpe2 = 0;
+
     }
     
     /**
@@ -129,6 +136,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         erraketa2.margotuErraketa2(g2d);
         g2d.setColor(Color.WHITE);
         bola.bolaMargotu(g2d);
+
     }
     
     /**
@@ -177,6 +185,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * beherako gezia klikatzen bada erraketa 2 behera doa.
      */
     public void keyPressed(KeyEvent e) {
+
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
                 erraketa1.mugituErraketa1Gorantz();
@@ -195,78 +204,68 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
                 break;
         }
     }
-    
-    /**
-     * Tekla bat askatzean
-     * Metodo hau jarri behar da, bestela errorea ematen du
-     * @param e 
-     */
+
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
     }
-    
-    /**
-     * Tekla bat klikatzean
-     * Metodo hau jarri behar da, bestela errorea ematen du
-     * @param e 
-     */
+
     @Override
     public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
 
     }
     /**
      * Linea hauek komentatuta daude, ezin izan dugu inplementatu kredituak,agertzen ziren jokua exekutatzen zegoen bitartean eta ez zen gelditzen.
      * @throws InterruptedException 
      */
-//    public void kredituakbistaratu() throws InterruptedException{
-//    int aukera = JOptionPane.showConfirmDialog(this, "Kredituak ikusi nahi dituzu?", "Kredituak", JOptionPane.YES_NO_OPTION);
-//        if (aukera == JOptionPane.NO_OPTION) {
-//           berriroHasi();
-//        } else if (aukera == JOptionPane.YES_OPTION) {
-//    
-//        kredituak= new JFrame();
-//        kredituak.setTitle("Kredituak");
-//        kredituak.setResizable(false);
-//        kredituak.setBounds(450, 100, 640, 450);
-//        kreditupanela=new JPanel();
-//        kreditupanela.setBorder(new EmptyBorder(5, 5, 5, 5));
-//        kredituak.setContentPane(kreditupanela);
-//        kreditupanela.setLayout(null);
-//        kreditupanela.setBackground(Color.black);
-//        
-//        argazkia= new ImageIcon("src/argazkia/argazkia.PNG");
-//        Image arg = argazkia.getImage();
-//        Image argazkineurri = arg.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
-//        argazkia = new ImageIcon(argazkineurri);
-//        
-//        argazkilabel= new JLabel();
-//        argazkilabel.setBounds(220, 30, argazkineurri.getWidth(rootPane), argazkineurri.getHeight(rootPane));
-//        argazkilabel.setIcon(argazkia);
-//        kredituak.add(argazkilabel);
-//       
-//        izenburua= new JLabel("Ping Pong");
-//        izenburua.setForeground(Color.WHITE);
-//        izenburua.setFont(letramota.nireIturria(Font.BOLD, 20));
-//        izenburua.setBounds(250,200, 250, 30);
-//        kredituak.add(izenburua);
-//        
-//        izena1=new JLabel("Maitane    Gallastegui");
-//        izena1.setForeground(Color.WHITE);
-//        izena1.setFont(letramota.nireIturria(Font.BOLD, 14));
-//        izena1.setBounds(250, 230, 250, 30);
-//        kredituak.add(izena1);
-//        
-//        izena2=new JLabel("Asier    Moneo");
-//        izena2.setForeground(Color.WHITE);
-//        izena2.setFont(letramota.nireIturria(Font.BOLD, 14));
-//        izena2.setBounds(250, 250, 250, 30);
+    public void kredituakbistaratu() throws InterruptedException{
+         
+        kredituak= new JFrame();
+        kredituak.setTitle("Kredituak");
+        kredituak.setResizable(false);
+        kredituak.setBounds(450, 100, 640, 450);
+        kreditupanela=new JPanel();
+        kreditupanela.setBorder(new EmptyBorder(5, 5, 5, 5));
+        kredituak.setContentPane(kreditupanela);
+        kreditupanela.setLayout(null);
+        kreditupanela.setBackground(Color.black);
+        
+        argazkia= new ImageIcon("src/argazkia/argazkia.PNG");
+        Image arg = argazkia.getImage();
+        Image argazkineurri = arg.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
+        argazkia = new ImageIcon(argazkineurri);
+        
+        argazkilabel= new JLabel();
+        argazkilabel.setBounds(220, 30, argazkineurri.getWidth(rootPane), argazkineurri.getHeight(rootPane));
+        argazkilabel.setIcon(argazkia);
+        kredituak.add(argazkilabel);
+       
+        izenburua= new JLabel("Ping Pong");
+        izenburua.setForeground(Color.WHITE);
+        izenburua.setFont(letraMota.nireIturria(Font.BOLD, 20));
+        izenburua.setBounds(250,200, 250, 30);
+        kredituak.add(izenburua);
+        
+        
+        izena1=new JLabel("Maitane    Gallastegui");
+        izena1.setForeground(Color.WHITE);
+        izena1.setFont(letraMota.nireIturria(Font.BOLD, 14));
+        izena1.setBounds(250, 230, 250, 30);
+        kredituak.add(izena1);
+        
+        izena2=new JLabel("Asier    Moneo");
+        izena2.setForeground(Color.WHITE);
+        izena2.setFont(letraMota.nireIturria(Font.BOLD, 14));
+        izena2.setBounds(250, 250, 250, 30);
+        kredituak.add(izena2);
+ 
+        kredituak.setVisible(true);
+        kredituak.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+    }
     
-//        kredituak.add(izena2);
-//        kredituak.setVisible(true);
-//        }
-//    }
-
     /**
      * Berri jolastu nahi duen galdetzen du 
      * Baietz esaten badu, berriro kargatuko da partida
@@ -275,12 +274,22 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * @throws InterruptedException 
      */
     public void berriroHasi() throws InterruptedException {
+        
+        
         int aukera = JOptionPane.showConfirmDialog(this, "Berriro jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
-            System.exit(0);
+            kredituakbistaratu();
+            while(true){
+                this.setVisible(false);
+            }
+            
+            
+
         } else if (aukera == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(this, "1. Jokalari gorria (W, S) vs 2. Jokalari horia (Gorako gezia, Beherako gezia)", "Ping Pong", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(true);
+            
+            
             reset();
 
             for (int i = 0; i < 179; i++) {
@@ -295,6 +304,7 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
             }
             Thread.sleep(2);
         }
+
     }
 
     /**
@@ -317,21 +327,29 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * @throws InterruptedException 
      */
     public void gameOver() throws InterruptedException {
+
         if (golpe1 > golpe2) {
+
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
+
         } else if (golpe1 < golpe2) {
+
             JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
 
         } else if (golpe1 == 0 && golpe2 == 0) {
+
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
 
         } else {
+
             JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
             berriroHasi();
+
         }
     }
+
 }
 
