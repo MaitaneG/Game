@@ -1,6 +1,7 @@
 # Game
 /*PING PONG*/
 Egileak: Asier Moneo eta Maitane Gallastegui
+Lenguaia: java
 _Informazio inportantea:_
   1- GitHub-eko repositorioan hainbat proiektu daude, baina balio duen projektu bakarra PingPong da.
 
@@ -17,5 +18,5 @@ _Jolasa azaldu_
   8- Bigarren aldiz jolasten duzunean ez da musika jartzen.
 
 _Arazoak_ 
-  1- Gure jokua netbeans-en ondo exekutatzen da, baina .jar-etatik exekutzen bada, letra tipoa eta musika ez du ondo funtzionatzen. Horregatik bideoa egiterakoan, Netbean-etik egin 
-     dugu.
+  1- Gure jokua netbeans-en ondo exekutatzen da, baina .jar-etatik exekutzen bada, letra tipoa eta musika ez du ondo funtzionatzen. Horregatik bideoa egiterakoan, Netbean-etik    
+     egin dugu.
