@@ -5,14 +5,22 @@
  */
 package exekutagarria;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import letratipoa.Iturria;
 import model.PuntuazioarenTableModela;
+
 
 /**
  *
  * @author moneo.asier
  */
 public class Puntuazioajolasa extends javax.swing.JFrame {
-
+private Iturria letraMota;
+private JLabel taulaizenburu;
     /**
      * Creates new form Puntuazioajolasa
      */
@@ -54,21 +62,19 @@ public class Puntuazioajolasa extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(irten)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(irten)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(irten)
                 .addGap(27, 27, 27))
         );
@@ -90,10 +96,22 @@ public class Puntuazioajolasa extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
          jTable1.setModel(new model.PuntuazioarenTableModela());
+         taulaizenburu = new JLabel("Puntuazioa");
+        taulaizenburu.setForeground(Color.WHITE);
+        taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
+        taulaizenburu.setBounds(250, 200, 250, 30);
+        jPanel1.add(taulaizenburu);
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void irtenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irtenActionPerformed
         this.setVisible(false);
+        PingPong kreditu = new PingPong();
+        try {
+            kreditu.kredituakbistaratu();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Puntuazioajolasa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_irtenActionPerformed
 
     /**
@@ -128,6 +146,7 @@ public class Puntuazioajolasa extends javax.swing.JFrame {
             public void run() {
                
                 new Puntuazioajolasa().setVisible(true);
+                
             }
         });
     }

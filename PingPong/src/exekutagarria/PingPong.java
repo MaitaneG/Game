@@ -10,17 +10,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import musika.Soinua;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import letratipoa.Iturria;
 import model.Bola;
 import model.Erraketa;
 import model.PuntuazioaKudeatu;
-
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
 
@@ -40,6 +42,9 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
     private JLabel izena2;
     private JLabel izenburua;
     private Iturria letraMota;
+    
+
+   
 
     /**
      * Launch the application.
@@ -285,7 +290,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
         int aukera = JOptionPane.showConfirmDialog(this, "Berriro jolastu nahi duzu?", "Ping Pong", JOptionPane.YES_NO_OPTION);
         if (aukera == JOptionPane.NO_OPTION) {
-            kredituakbistaratu();
+            taulagertu();
+           
             while (true) {
                 this.setVisible(false);
             }
@@ -331,38 +337,40 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * @throws InterruptedException
      */
     public void gameOver() throws InterruptedException {
-        PuntuazioaKudeatu p= new PuntuazioaKudeatu();
-        Puntuazioajolasa t= new Puntuazioajolasa();
+        PuntuazioaKudeatu p = new PuntuazioaKudeatu();
+        Puntuazioajolasa t = new Puntuazioajolasa();
         if (golpe1 > golpe2) {
 
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             p.partidaGehitu(golpe1 / 2, golpe2 / 2);
-            t.setVisible(true);
             berriroHasi();
 
         } else if (golpe1 < golpe2) {
 
             JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             p.partidaGehitu(golpe1 / 2, golpe2 / 2);
-            t.setVisible(true);
             berriroHasi();
 
         } else if (golpe1 == 0 && golpe2 == 0) {
 
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
             p.partidaGehitu(golpe1 / 2, golpe2 / 2);
-            t.setVisible(true);
             berriroHasi();
 
         } else {
 
             JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
             p.partidaGehitu(golpe1 / 2, golpe2 / 2);
-          
-            t.setVisible(true);
             berriroHasi();
 
         }
     }
+
+    public void taulagertu() {
+        new Puntuazioajolasa().setVisible(true);
+       
+    }
+
+   
 
 }
