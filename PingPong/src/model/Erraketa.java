@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Erraketa1 {
+public class Erraketa {
     
     private int y, yNorabidea, altuera, zabalera;
     private Color kolorea;
@@ -14,7 +14,7 @@ public class Erraketa1 {
      *
      * @param altuera bakarrik jasotzen du.
      */
-    public Erraketa1(int altuera) {
+    public Erraketa(int altuera) {
         y = 0;
         yNorabidea = 1;
         zabalera = 70;
@@ -27,7 +27,7 @@ public class Erraketa1 {
      * @param altuera jasotzen du
      * @param kolorea jasotzen du
      */
-    public Erraketa1(int altuera, Color kolorea) {
+    public Erraketa(int altuera, Color kolorea) {
         this.altuera = altuera;
         this.kolorea = kolorea;
         y = 0;
@@ -40,7 +40,7 @@ public class Erraketa1 {
      * @param kolorea jasotzen du
      * @param zabalera jasotzen du
      */
-    public Erraketa1(int altuera, Color kolorea, int zabalera) {
+    public Erraketa(int altuera, Color kolorea, int zabalera) {
         this.altuera = altuera;
         this.kolorea = kolorea;
         this.zabalera = zabalera;
@@ -51,23 +51,23 @@ public class Erraketa1 {
     /**
      * Erraketa behera mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
      */
-    public void mugituErraketa1Beherantz() {
+    public void mugituErraketaBeherantz() {
         if (y - 30 > -207) { //(484/2-zabalera)=207  
             y = y - 30;
         }
     }
     
     /**
-     * Erraketa1 gora mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
+     * Erraketa gora mugitzeko eta limite bat dauka erraketa pantailatik ez irtetzeko.
      */
-    public void mugituErraketa1Gorantz() {
+    public void mugituErraketaGorantz() {
         if (y + zabalera + 30 < altuera - 242) {//(484/2)=242
             y = y + 30;
         }
     }
     
     /**
-     * Erraketa1 margotzeko
+     * Erraketa margotzeko
      * @param g jasotzen du
      */
     public void margotuErraketa1(Graphics2D g) {
@@ -80,5 +80,12 @@ public class Erraketa1 {
      */
     public Rectangle bolarenLimitea1() {
         return new Rectangle(15, 207 - y, 20, zabalera);
+    }
+    
+      public void margotuErraketa2(Graphics2D g) {
+        g.fillRoundRect(603, 207 - y, 20, zabalera, 25, 25);
+    }
+      public Rectangle bolarenLimitea2() {
+        return new Rectangle(603, 207 - y, 20, zabalera);
     }
 }
