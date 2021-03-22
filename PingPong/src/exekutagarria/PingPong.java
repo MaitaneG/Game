@@ -18,15 +18,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import letratipoa.Iturria;
 import model.Bola;
-import model.Erraketa1;
-import model.Erraketa2;
+import model.Erraketa;
+
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
 
     private JPanel panela;
     private Bola bola;
-    private Erraketa1 erraketa1;
-    private Erraketa2 erraketa2;
+    private Erraketa erraketa1;
+    private Erraketa erraketa2;
     private int golpe1, golpe2;
     private JLabel labelKontagailu1;
     private JLabel labelKontagailu2;
@@ -111,8 +111,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         panela.add(labelKontagailu2);
 
         bola = new Bola(getWidth(), getHeight());
-        erraketa1 = new Erraketa1(getHeight());
-        erraketa2 = new Erraketa2(getHeight());
+        erraketa1 = new Erraketa(getHeight());
+        erraketa2 = new Erraketa(getHeight());
         addKeyListener(this);
         golpe1 = 0;
         golpe2 = 0;
@@ -194,19 +194,19 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                erraketa1.mugituErraketa1Gorantz();
+                erraketa1.mugituErraketaGorantz();
                 break;
             case KeyEvent.VK_S:
-                erraketa1.mugituErraketa1Beherantz();
+                erraketa1.mugituErraketaBeherantz();
                 break;
         }
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                erraketa2.mugituErraketa2Gorantz();
+                erraketa2.mugituErraketaGorantz();
                 break;
             case KeyEvent.VK_DOWN:
-                erraketa2.mugituErraketa2Beherantz();
+                erraketa2.mugituErraketaBeherantz();
                 break;
         }
     }
@@ -320,8 +320,8 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
         golpe1 = 0;
         golpe2 = 0;
         bola = new Bola(getWidth(), getHeight());
-        erraketa1 = new Erraketa1(getHeight());
-        erraketa2 = new Erraketa2(getHeight());
+        erraketa1 = new Erraketa(getHeight());
+        erraketa2 = new Erraketa(getHeight());
     }
 
     /**
