@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import letratipoa.Iturria;
 import model.Bola;
 import model.Erraketa;
+import model.PuntuazioaKudeatu;
 
 
 public class PingPong extends javax.swing.JFrame implements KeyListener {
@@ -330,25 +331,35 @@ public class PingPong extends javax.swing.JFrame implements KeyListener {
      * @throws InterruptedException
      */
     public void gameOver() throws InterruptedException {
-
+        PuntuazioaKudeatu p= new PuntuazioaKudeatu();
+        Puntuazioajolasa t= new Puntuazioajolasa();
         if (golpe1 > golpe2) {
 
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
+            p.partidaGehitu(golpe1 / 2, golpe2 / 2);
+            t.setVisible(true);
             berriroHasi();
 
         } else if (golpe1 < golpe2) {
 
             JOptionPane.showMessageDialog(this, "2. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
+            p.partidaGehitu(golpe1 / 2, golpe2 / 2);
+            t.setVisible(true);
             berriroHasi();
 
         } else if (golpe1 == 0 && golpe2 == 0) {
 
             JOptionPane.showMessageDialog(this, "1. Jokalaria irabazi du", "Game Over", JOptionPane.YES_NO_OPTION);
+            p.partidaGehitu(golpe1 / 2, golpe2 / 2);
+            t.setVisible(true);
             berriroHasi();
 
         } else {
 
             JOptionPane.showMessageDialog(this, "Berdinketa", "Game Over", JOptionPane.YES_NO_OPTION);
+            p.partidaGehitu(golpe1 / 2, golpe2 / 2);
+          
+            t.setVisible(true);
             berriroHasi();
 
         }

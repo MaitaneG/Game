@@ -20,7 +20,7 @@ public class PuntuazioaKudeatu {
     
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:db/Puntuazioa.db";
+        String url = "jdbc:sqlite:db/Partidak.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -44,23 +44,5 @@ public class PuntuazioaKudeatu {
             System.out.println(e.getMessage());
         }
     }
-    
-    
-   public void terminoakImprimatu() {
-        String sql = "SELECT partidaid, jokalari1, jokalari2 FROM Puntuazioa";
-
-        try (Connection conn = this.connect();
-               PreparedStatement pstmt = conn.prepareStatement(sql);
-                ResultSet rs = pstmt.executeQuery()) {
-           
-            // loop through the result set
-            while (rs.next()) {
-              
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    } 
-    
     
 }
