@@ -9,9 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 import letratipoa.Iturria;
-import model.PuntuazioarenTableModela;
 
 
 /**
@@ -39,11 +37,12 @@ private Iturria letraMota;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jokalai1taula = new javax.swing.JTable();
         irten = new javax.swing.JButton();
         taulaizenburu = new javax.swing.JLabel();
 
         setResizable(false);
+        setSize(new java.awt.Dimension(477, 352));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -57,7 +56,7 @@ private Iturria letraMota;
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jokalai1taula);
 
         irten.setText("Irten");
         irten.addActionListener(new java.awt.event.ActionListener() {
@@ -79,30 +78,32 @@ private Iturria letraMota;
                         .addContainerGap()
                         .addComponent(irten))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addComponent(taulaizenburu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addComponent(taulaizenburu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(taulaizenburu, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
+                .addComponent(taulaizenburu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(irten)
-                .addGap(8, 8, 8))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,9 +115,8 @@ private Iturria letraMota;
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         jTable1.setModel(new model.PuntuazioarenTableModela());
-        
-        
+         jokalai1taula.setModel(new model.PuntuazioarenTableModela());
+            
     }//GEN-LAST:event_formWindowOpened
 
     private void irtenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irtenActionPerformed
@@ -133,7 +133,7 @@ private Iturria letraMota;
         letraMota = new Iturria();
         taulaizenburu.setForeground(Color.WHITE);
         taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
-        jPanel1.add(taulaizenburu);
+         jPanel1.add(taulaizenburu);
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -177,7 +177,7 @@ private Iturria letraMota;
     private javax.swing.JButton irten;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jokalai1taula;
     private javax.swing.JLabel taulaizenburu;
     // End of variables declaration//GEN-END:variables
 }

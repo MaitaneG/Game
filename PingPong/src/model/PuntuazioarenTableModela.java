@@ -18,10 +18,11 @@ import java.sql.DriverManager;
  * @author asier
  */
 public class PuntuazioarenTableModela extends AbstractTableModel {
+
     private ArrayList<Integer> jokalari2 = new ArrayList<>();
     private ArrayList<Integer> jokalari1 = new ArrayList<>();
-    private ArrayList<Integer> idak = new ArrayList<>();
-    private String[] zutabeIzenak = {"Partida Id","Jokalaria 1", "Jokalaria 2"};
+
+    private String[] zutabeIzenak = {"Jokalaria 1", "Jokalaria 2"};
 
     private Connection connect() {
         // SQLite connection string
@@ -37,18 +38,20 @@ public class PuntuazioarenTableModela extends AbstractTableModel {
 
     public PuntuazioarenTableModela() {
 
-        String sql = "SELECT partidaid, jokalari1, jokalari2 FROM Puntuazioa";
+        String sql = "SELECT jokalari1, jokalari2 FROM Puntuazioa";
 
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
-
-            // loop through the result set
+            
             while (rs.next()) {
-                idak.add(rs.getInt("partidaid"));
+
+          
                 jokalari1.add(rs.getInt("jokalari1"));
                 jokalari2.add(rs.getInt("jokalari2"));
+
             }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -57,7 +60,7 @@ public class PuntuazioarenTableModela extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return idak.size();
+        return jokalari1.size();
     }
 
     @Override
@@ -74,9 +77,8 @@ public class PuntuazioarenTableModela extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         switch (col) {
             case 0:
-                return idak.get(row);
-            case 1:
-                return jokalari1.get(row);
+              return jokalari1.get(row);
+               
             default:
                 return jokalari2.get(row);
         }
