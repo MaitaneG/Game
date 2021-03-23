@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import letratipoa.Iturria;
 
 
@@ -37,7 +39,7 @@ private Iturria letraMota;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jokalai1taula = new javax.swing.JTable();
+        jokalari1taula = new javax.swing.JTable();
         irten = new javax.swing.JButton();
         taulaizenburu = new javax.swing.JLabel();
 
@@ -56,7 +58,17 @@ private Iturria letraMota;
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jScrollPane1.setViewportView(jokalai1taula);
+        jokalari1taula.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jokalari1taula.getTableHeader().setResizingAllowed(false);
+        jokalari1taula.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jokalari1taula);
 
         irten.setText("Irten");
         irten.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +127,7 @@ private Iturria letraMota;
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         jokalai1taula.setModel(new model.PuntuazioarenTableModela());
+         jokalari1taula.setModel(new model.PuntuazioarenTableModela());
             
     }//GEN-LAST:event_formWindowOpened
 
@@ -131,8 +143,13 @@ private Iturria letraMota;
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         letraMota = new Iturria();
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+tcr.setHorizontalAlignment(SwingConstants.CENTER);
+jokalari1taula.getColumnModel().getColumn(jokalari1).setCellRenderer(tcr);
         taulaizenburu.setForeground(Color.WHITE);
         taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
+        jokalari1taula.setFont(letraMota.nireIturria(Font.PLAIN, 18));
+        
          jPanel1.add(taulaizenburu);
     }//GEN-LAST:event_formComponentShown
 
@@ -177,7 +194,7 @@ private Iturria letraMota;
     private javax.swing.JButton irten;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jokalai1taula;
+    private javax.swing.JTable jokalari1taula;
     private javax.swing.JLabel taulaizenburu;
     // End of variables declaration//GEN-END:variables
 }
