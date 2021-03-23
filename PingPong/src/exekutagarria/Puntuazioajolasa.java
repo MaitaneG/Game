@@ -20,7 +20,7 @@ import model.PuntuazioarenTableModela;
  */
 public class Puntuazioajolasa extends javax.swing.JFrame {
 private Iturria letraMota;
-private JLabel taulaizenburu;
+
     /**
      * Creates new form Puntuazioajolasa
      */
@@ -41,13 +41,21 @@ private JLabel taulaizenburu;
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         irten = new javax.swing.JButton();
+        taulaizenburu = new javax.swing.JLabel();
 
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -58,25 +66,36 @@ private JLabel taulaizenburu;
             }
         });
 
+        taulaizenburu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taulaizenburu.setText("Puntuazioa");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(irten)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(irten))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(taulaizenburu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
+                .addComponent(taulaizenburu, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(irten)
-                .addGap(27, 27, 27))
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,11 +115,7 @@ private JLabel taulaizenburu;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
          jTable1.setModel(new model.PuntuazioarenTableModela());
-         taulaizenburu = new JLabel("Puntuazioa");
-        taulaizenburu.setForeground(Color.WHITE);
-        taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
-        taulaizenburu.setBounds(250, 200, 250, 30);
-        jPanel1.add(taulaizenburu);
+        
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -113,6 +128,13 @@ private JLabel taulaizenburu;
             Logger.getLogger(Puntuazioajolasa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_irtenActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        letraMota = new Iturria();
+        taulaizenburu.setForeground(Color.WHITE);
+        taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
+        jPanel1.add(taulaizenburu);
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -156,5 +178,6 @@ private JLabel taulaizenburu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel taulaizenburu;
     // End of variables declaration//GEN-END:variables
 }
