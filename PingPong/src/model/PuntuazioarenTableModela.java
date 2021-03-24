@@ -45,7 +45,6 @@ public class PuntuazioarenTableModela extends AbstractTableModel {
             
             while (rs.next()) {
 
-          
                 jokalari1.add(rs.getInt("jokalari1"));
                 jokalari2.add(rs.getInt("jokalari2"));
 
