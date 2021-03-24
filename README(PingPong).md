@@ -22,7 +22,7 @@ _Jolasa azaldu_
 _Oharrak_ 
   1- Gure jokua netbeans-en ondo exekutatzen da, baina .jar-etatik exekutzen bada, letra tipoa eta musika ez du ondo funtzionatzen. Horregatik bideoa egiterakoan, Netbean-etik    
      egin dugu.
-  2- Klase diagrama, PingPong-eko klasediagrama karpetan dago.
+  2- Klase diagrama, PingPong-eko proiektuaeren klasediagrama karpetan dago.
 _Aldaketak_
   1- Klaseak aldatu dugu: lehen Erraketa1 eta Erraketa2 klaseak geneuzkan eta orain Erraketa klasea dugu, eta gero jolasean klase horretako bi objetu sortzen ditugu.
   2- Partida bat eta gero, partida horretako id-a (AUTOINCREMENT), jokalari 1-en puntuak eta joakalari 2-ren puntuak gordetzen du, eta jokua ixtean, taula batean puntuazio guztiak
