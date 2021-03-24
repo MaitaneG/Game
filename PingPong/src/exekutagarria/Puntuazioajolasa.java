@@ -9,17 +9,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import letratipoa.Iturria;
-
 
 /**
  *
  * @author moneo.asier
  */
 public class Puntuazioajolasa extends javax.swing.JFrame {
-private Iturria letraMota;
+
+    private Iturria letraMota;
 
     /**
      * Creates new form Puntuazioajolasa
@@ -63,7 +64,7 @@ private Iturria letraMota;
 
             },
             new String [] {
-
+                "Title 1", "Title 2"
             }
         ));
         jokalari1taula.getTableHeader().setResizingAllowed(false);
@@ -127,8 +128,8 @@ private Iturria letraMota;
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         jokalari1taula.setModel(new model.PuntuazioarenTableModela());
-            
+        jokalari1taula.setModel(new model.PuntuazioarenTableModela());
+
     }//GEN-LAST:event_formWindowOpened
 
     private void irtenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irtenActionPerformed
@@ -143,14 +144,12 @@ private Iturria letraMota;
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         letraMota = new Iturria();
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-tcr.setHorizontalAlignment(SwingConstants.CENTER);
-jokalari1taula.getColumnModel().getColumn(jokalari1).setCellRenderer(tcr);
+        ((DefaultTableCellRenderer) jokalari1taula.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
         taulaizenburu.setForeground(Color.WHITE);
         taulaizenburu.setFont(letraMota.nireIturria(Font.BOLD, 20));
-        jokalari1taula.setFont(letraMota.nireIturria(Font.PLAIN, 18));
-        
-         jPanel1.add(taulaizenburu);
+        jPanel1.add(taulaizenburu);
+
+
     }//GEN-LAST:event_formComponentShown
 
     /**
@@ -183,9 +182,9 @@ jokalari1taula.getColumnModel().getColumn(jokalari1).setCellRenderer(tcr);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
                 new Puntuazioajolasa().setVisible(true);
-                
+
             }
         });
     }
