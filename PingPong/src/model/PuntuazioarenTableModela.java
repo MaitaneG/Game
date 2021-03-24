@@ -21,7 +21,6 @@ public class PuntuazioarenTableModela extends AbstractTableModel {
 
     private ArrayList<Integer> jokalari2 = new ArrayList<>();
     private ArrayList<Integer> jokalari1 = new ArrayList<>();
-
     private String[] zutabeIzenak = {"Jokalaria 1", "Jokalaria 2"};
 
     private Connection connect() {
